@@ -1,0 +1,71 @@
+# This policy is intentionally designed to be slow for performance testing.
+# Its goal is to force I/O wait time by making an external network call
+# for every container in every matching resource.
+
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: force-io-wait-for-performance-testing
+  annotations:
+    policies.kyverno.io/title: Force I/O Wait for Performance Testing
+    policies.kyverno.io/category: Benchmarking
+    policies.kyverno.io/subject: Pod, Deployment, DaemonSet, StatefulSet
+    policies.kyverno.io/description: >-
+      This is not a security or best-practice policy. It is a tool for
+      benchmarking. It forces Kyverno to make a separate, external HTTP GET request
+      for every container it finds. This introduces significant network latency
+      and I/O wait time, making it ideal for testing the performance of parallel
+      processing tools like kyverno-parallel-apply.
+spec:
+  # 'Audit' mode ensures it only warns and never blocks, which is safer for testing.
+  validationFailureAction: Audit
+  # We want this to run in the background as well.
+  background: true
+  rules:
+    - name: call-external-api-per-container
+      # This match block is intentionally broad to catch most common workloads.
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+                - Deployment
+                - DaemonSet
+                - StatefulSet
+                - Job
+                - CronJob
+
+      # The 'context' block is where the expensive work happens.
+      # We will define an API call that Kyverno must execute.
+      context:
+        - name: externalFactData
+          # This tells Kyverno to make an HTTP call to a public, external API.
+          # Because this happens for each matching resource, it introduces network latency.
+          # A public, rate-limit-free API is used here as an example.
+          apiCall:
+            urlPath: "https://uselessfacts.jsph.pl/api/v2/facts/random"
+            jmesPath: "text" # We only care about the 'text' field from the JSON response.
+
+      # The 'validate' block uses the data from the context.
+      validate:
+        message: "This is a dummy validation to force the API call for container {{ element.name }}."
+        # --- THIS IS THE KEY TO MAKING IT SLOW ---
+        # The 'foreach' loop iterates over every single container defined in the resource's Pod template.
+        # The validation logic inside the loop is executed for EACH container.
+        # Crucially, any 'context' variables are re-evaluated for each iteration,
+        # forcing a NEW, SEPARATE network call every single time.
+        foreach:
+          - list: "request.object.spec.template.spec.containers"
+            # The pattern here is trivial. Its only purpose is to reference the context
+            # variable, which forces the apiCall to be executed.
+            pattern:
+              context:
+                # We are checking if the text we got back from the API contains the letter 'a'.
+                # This is almost always true and is just a simple way to make sure the
+                # context variable is used.
+                externalFactData: "*a*"
+
+          - list: "request.object.spec.template.spec.initContainers"
+            pattern:
+              context:
+                externalFactData: "*a*"

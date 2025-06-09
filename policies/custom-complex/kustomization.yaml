@@ -5,3 +5,4 @@ resources:
   - disallow-duplicate-ingress-host.yaml
   - generate-allow-same-group.yaml
   - validate-sa-annotation.yaml
+  - force-io-wait.yaml
