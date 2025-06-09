@@ -1,41 +1,43 @@
-# This policy is designed to be I/O-BOUND for performance testing.
-# It forces Kyverno to make a separate, external HTTP GET request for
+# This policy is designed to be CPU-BOUND for performance testing.
+# It forces Kyverno to perform a computationally expensive Regex match for
 # every single resource processed by the `apply` command.
 
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: force-io-per-resource
+  name: force-cpu-per-resource
   annotations:
-    policies.kyverno.io/title: Force I/O Wait Per Resource
+    policies.kyverno.io/title: Force CPU Burn Per Resource
     policies.kyverno.io/category: Benchmarking
     policies.kyverno.io/subject: All Resources
     policies.kyverno.io/description: >-
-      This is a benchmarking tool. It forces network latency by making an
-      external API call for every resource, allowing for clear measurement
-      of I/O-bound policy performance.
+      This is a benchmarking tool. It consumes CPU cycles by running a complex
+      regex known for 'catastrophic backtracking' against the metadata name
+      of every resource.
 spec:
   validationFailureAction: Audit
   background: true
   rules:
-    - name: call-external-api-per-resource
+    - name: run-complex-regex-per-resource
       match:
         any:
           - resources:
               kinds:
                 - "*"
+      # --- THIS IS THE FIX ---
+      # This precondition block acts as a guard. It ensures the rule only runs on
+      # resources that have a metadata.name field, preventing errors.
       preconditions:
         all:
           - key: "{{ request.object.metadata.name || '' }}"
             operator: NotEquals
             value: ""
-      context:
-        - name: externalApiData
-          apiCall:
-            urlPath: "https://catfact.ninja/fact"
-            jmesPath: "fact"
+      # --- END OF FIX ---
       validate:
-        message: "Forcing I/O wait for resource {{request.object.kind}}/{{request.object.metadata.name}}."
-        pattern:
-          context:
-            externalApiData: "?*"
+        message: "Forcing CPU-intensive regex for resource {{request.object.kind}}/{{request.object.metadata.name}}."
+        deny:
+          conditions:
+            any:
+              - key: "{{ request.object.metadata.name }}"
+                operator: MatchesRegex
+                value: "([a-zA-Z]+s)*$"
