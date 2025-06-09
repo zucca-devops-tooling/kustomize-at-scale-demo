@@ -50,7 +50,7 @@ spec:
         deny:
           conditions:
             any:
-              - key: "{{ request.object.kind }}"
+              - key: "{{ kind }}"
                 operator: NotMatchesRegex
                 # This complex regex forces the engine to do a lot of work.
                 value: "^([a-z0-9](-?[a-z0-9])*.?)+$"
