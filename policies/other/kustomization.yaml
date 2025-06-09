@@ -2,21 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - add-default-resources.yaml
-  - add-default-securitycontext.yaml
-  - add-labels.yaml
-  - add-nodeSelector.yaml
   - allowed-annotations.yaml
-  - annotate-base-images.yaml
   - block-ephemeral-containers.yaml
   - block-stale-images.yaml
   - check-ingress-nginx-controller-version-and-annotation-policy.yaml
   - check-nvidia-gpu.yaml
-  - copy-namespace-labels.yaml
   - create-default-pdb.yaml
   - deployment-replicas-higher-than-pdb.yaml
   - generate-networkpolicy-existing.yaml
-  - inject-sidecar-deployment.yaml
   - metadata-match-regex.yaml
   - namespace-protection.yaml
   - require-annotations.yaml

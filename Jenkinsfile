@@ -49,10 +49,7 @@ pipeline {
                             )
 
                             if (buildResult != 0) {
-                                if (fileExists(outputFile)){
-                                    echo "❌ Failed to build ${appPath}, skipping..."
-                                    sh "rm -f ${outputFile}"
-                                }
+                                echo "❌ Failed to build ${appPath}, skipping..."
                             }
                         }
                     }
@@ -69,7 +66,7 @@ pipeline {
         stage('Apply kyverno policies') {
             steps {
                 script {
-                    sh "kyverno apply ${policiesFile} --resource ${builtAppsFolder} --audit-policy --audit-warn > ${kyvernoResults} 2>&1"
+                    sh "kyverno apply ${policiesFile} --resource ${builtAppsFolder} --audit-warn > ${kyvernoResults} 2>&1"
                 }
             }
             post {

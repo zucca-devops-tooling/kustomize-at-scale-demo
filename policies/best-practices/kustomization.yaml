@@ -6,7 +6,6 @@ resources:
   - add-networkpolicy-dns.yaml
   - add-ns-quota.yaml
   - add-rolebinding.yaml
-  - add-safe-to-evict.yaml
   - check-deprecated-apis.yaml
   - disallow-cri-sock-mount.yaml
   - disallow-default-namespace.yaml
