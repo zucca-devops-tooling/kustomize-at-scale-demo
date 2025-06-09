@@ -18,6 +18,33 @@ spec:
   background: true
   rules:
     - name: run-complex-regex-per-resource
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+                - Deployment
+                - ConfigMap
+                - Secret
+                - CronJob
+                - Service
+                - Namespace
+                - OCIRepository
+                - Job
+                - StatefulSet
+                - DaemonSet
+                - Ingress
+                - Role
+                - RoleBinding
+                - ClusterRole
+                - ClusterRoleBinding
+                - ClusterSecretStore
+                - ReplicationSource
+                - ReplicationDestination
+                - Provider
+                - GitRepository
+                - PersistentVolumeClaim
+                - NetworkPolicy
       validate:
         message: "Forcing CPU-intensive regex for resource."
         deny:
