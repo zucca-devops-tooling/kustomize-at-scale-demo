@@ -24,8 +24,11 @@ spec:
               kinds:
                 - "*"
 
-      # NO PRECONDITIONS ARE NEEDED.
-      # This rule operates on fields that are guaranteed to exist.
+      preconditions:
+        all:
+          - key: "{{ request.object.kind }}"
+            operator: NotEquals
+            value: null
 
       context:
         - name: externalApiData
