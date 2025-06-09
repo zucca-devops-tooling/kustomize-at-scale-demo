@@ -24,6 +24,11 @@ spec:
           - resources:
               kinds:
                 - "*"
+      preconditions:
+        all:
+          - key: "{{ request.object.metadata.name || '' }}"
+            operator: NotEquals
+            value: ""
       context:
         - name: externalApiData
           apiCall:
@@ -31,8 +36,6 @@ spec:
             jmesPath: "fact"
       validate:
         message: "Forcing I/O wait for resource {{request.object.kind}}/{{request.object.metadata.name}}."
-        # This pattern simply checks that the data from the API call exists.
-        # Its only purpose is to ensure the context variable is used, which triggers the apiCall.
         pattern:
           context:
             externalApiData: "?*"

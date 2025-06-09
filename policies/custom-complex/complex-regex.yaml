@@ -1,39 +1,41 @@
-# This policy is designed to be CPU-BOUND for performance testing.
-# It forces Kyverno to perform a computationally expensive Regex match for
+# This policy is designed to be I/O-BOUND for performance testing.
+# It forces Kyverno to make a separate, external HTTP GET request for
 # every single resource processed by the `apply` command.
 
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: force-cpu-per-resource
+  name: force-io-per-resource
   annotations:
-    policies.kyverno.io/title: Force CPU Burn Per Resource
+    policies.kyverno.io/title: Force I/O Wait Per Resource
     policies.kyverno.io/category: Benchmarking
     policies.kyverno.io/subject: All Resources
     policies.kyverno.io/description: >-
-      This is a benchmarking tool. It consumes CPU cycles by running a complex
-      regex known for 'catastrophic backtracking' against the metadata name
-      of every resource.
+      This is a benchmarking tool. It forces network latency by making an
+      external API call for every resource, allowing for clear measurement
+      of I/O-bound policy performance.
 spec:
   validationFailureAction: Audit
   background: true
   rules:
-    - name: run-complex-regex-per-resource
+    - name: call-external-api-per-resource
       match:
         any:
           - resources:
               kinds:
                 - "*"
+      preconditions:
+        all:
+          - key: "{{ request.object.metadata.name || '' }}"
+            operator: NotEquals
+            value: ""
+      context:
+        - name: externalApiData
+          apiCall:
+            urlPath: "https://catfact.ninja/fact"
+            jmesPath: "fact"
       validate:
-        message: "Forcing CPU-intensive regex for resource {{request.object.kind}}/{{request.object.metadata.name}}."
-        # This deny block forces the regex evaluation.
-        # The condition will always be false, so the rule will always result in a 'pass',
-        # but it forces the expensive regex engine to run every time.
-        deny:
-          conditions:
-            any:
-              - key: "{{ request.object.metadata.name }}"
-                operator: MatchesRegex
-                # This regex pattern is known for "catastrophic backtracking".
-                # It will consume significant CPU time to evaluate.
-                value: "([a-zA-Z]+s)*$"
+        message: "Forcing I/O wait for resource {{request.object.kind}}/{{request.object.metadata.name}}."
+        pattern:
+          context:
+            externalApiData: "?*"
