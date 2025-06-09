@@ -43,7 +43,17 @@ pipeline {
                         apps.'root-apps'.each { appPath ->
                             def outputFile = builtAppsFolder + "/" + appPath.replaceAll("/", "_") + ".yaml"
                             echo "--- Executing build for: ${appPath} ---"
-                            sh "kustomize build kubernetes/${appPath} -o ${outputFile}"
+                            def buildResult = sh(
+                                script: "kustomize build kubernetes/${appPath} -o ${outputFile}",
+                                returnStatus: true
+                            )
+
+                            if (buildResult != 0) {
+                                if (fileExists(outputFile)){
+                                    echo "❌ Failed to build ${appPath}, skipping..."
+                                    sh "rm -f ${outputFile}"
+                                }
+                            }
                         }
                     }
                 }
