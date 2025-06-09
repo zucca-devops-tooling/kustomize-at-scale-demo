@@ -1,0 +1,38 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: validate-sa-annotation-per-pod
+  annotations:
+    policies.kyverno.io/title: Validate ServiceAccount Annotation per Pod
+    policies.kyverno.io/category: Best Practices
+    policies.kyverno.io/subject: Pod, ServiceAccount
+    policies.kyverno.io/description: >-
+      This policy checks that the Pod's associated ServiceAccount has a specific
+      annotation 'owner/team'. This is computationally expensive because
+      it requires an API call for each Pod.
+spec:
+  validationFailureAction: Audit
+  background: false
+  rules:
+    - name: check-sa-for-owner-annotation
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+      context:
+        # Get the ServiceAccount name for the Pod, defaulting to 'default' if not specified.
+        - name: sa_name # <-- RENAMED from serviceAccountName
+          variable:
+            jmesPath: "request.object.spec.serviceAccountName || 'default'"
+        # Use an API call to fetch the full ServiceAccount object from the cluster.
+        - name: serviceAccountAnnotations
+          apiCall:
+            urlPath: "/api/v1/namespaces/{{request.namespace}}/serviceaccounts/{{sa_name}}" # <-- Use the new variable name
+            jmesPath: "metadata.annotations"
+      validate:
+        message: "The ServiceAccount '{{sa_name}}' for Pod '{{request.object.metadata.name}}' must have an 'owner/team' annotation."
+        pattern:
+          context:
+            serviceAccountAnnotations:
+              owner/team: "?*" # Assert that the 'owner/team' key exists with any value
