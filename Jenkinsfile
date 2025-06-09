@@ -69,7 +69,7 @@ pipeline {
         stage('Apply kyverno policies') {
             steps {
                 script {
-                    sh "kyverno apply ${policiesFile} --resource ${builtAppsFolder} --audit-warn -v 3 > ${kyvernoResults} 2>&1"
+                    sh "kyverno apply ${policiesFile} --resource ${builtAppsFolder} --audit-policy --audit-warn > ${kyvernoResults} 2>&1"
                 }
             }
             post {
