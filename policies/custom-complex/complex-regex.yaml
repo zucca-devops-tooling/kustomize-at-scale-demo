@@ -3,46 +3,29 @@
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: cpu-burn-container-name
+  name: cpu-burn-via-labels
 spec:
   validationFailureAction: Audit
   background: true
   rules:
-    - name: burn-cpu-via-container-name
+    - name: cpu-burn-labels
       match:
         any:
           - resources:
               kinds:
-                - Pod
-                - Deployment
-                - ConfigMap
-                - Secret
-                - CronJob
-                - Service
-                - Namespace
-                - OCIRepository
-                - Job
-                - StatefulSet
-                - DaemonSet
-                - Ingress
-                - Role
-                - RoleBinding
-                - ClusterRole
-                - ClusterRoleBinding
-                - ClusterSecretStore
-                - ReplicationSource
-                - ReplicationDestination
-                - Provider
-                - GitRepository
-                - PersistentVolumeClaim
-                - NetworkPolicy
+                - "*"  # Apply to all resources
+      preconditions:
+        all:
+          - key: "{{ request.object.metadata.labels }}"
+            operator: Defined
       validate:
-        message: "Simulating CPU load on container names."
+        message: "Simulating CPU burn via regex over label keys."
         foreach:
-          - list: "request.object.spec.containers"
+          - list: "request.object.metadata.labels"
             deny:
               conditions:
                 all:
-                  - key: "{{ element.name }}"
+                  - key: "{{ element.key }}"
                     operator: NotMatchesRegex
-                    value: "^([a-z0-9](-?[a-z0-9])*.?)+$"  # deliberately inefficient regex
+                    # Costly regex for benchmarking
+                    value: "^([a-z0-9](-?[a-z0-9])*.?)+$"
