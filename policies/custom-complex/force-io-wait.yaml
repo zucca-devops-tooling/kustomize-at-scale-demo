@@ -1,39 +1,43 @@
-# This policy is designed to be I/O-BOUND for performance testing.
-# It uses the user's superior logic to run an apiCall against every resource,
-# which is guaranteed to run without causing a "Policies Skipped" error.
+# This policy is designed to be CPU-BOUND for performance testing.
+# It uses the user's superior logic to run a complex regex against a
+# field that is guaranteed to exist on all Kubernetes resources (`apiVersion`).
 
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: force-io-per-resource-alpha
+  name: force-cpu-per-resource
   annotations:
-    policies.kyverno.io/title: Force I/O Wait Per Resource
+    policies.kyverno.io/title: Force CPU Burn Per Resource
     policies.kyverno.io/category: Benchmarking
     policies.kyverno.io/subject: All Resources
     policies.kyverno.io/description: >-
-      This is a benchmarking tool. It forces network latency by making an
-      external API call for every resource, allowing for clear measurement
-      of I/O-bound policy performance.
+      This is a benchmarking tool. It consumes CPU cycles by running a complex
+      regex known for 'catastrophic backtracking' against the apiVersion
+      of every resource. This is guaranteed to run without causing errors.
 spec:
   validationFailureAction: Audit
   background: true
   rules:
-    - name: call-external-api-per-resource
+    - name: run-complex-regex-per-resource
       match:
         any:
           - resources:
+              # This match block is truly universal.
               kinds:
                 - "*"
               apiGroups:
                 - "*"
-      context:
-        - name: externalApiData
-          apiCall:
-            urlPath: "https://catfact.ninja/fact"
-            jmesPath: "fact"
-
+      # --- NO PRECONDITIONS ARE NEEDED ---
+      # Because we are operating on `apiVersion`, which is a required field,
+      # we don't need complex guards. This is a much cleaner and more robust design.
       validate:
-        message: "Forcing I/O wait for resource."
-        pattern:
-          context:
-            externalApiData: "?*"
+        message: "Forcing CPU-intensive regex for resource."
+        deny:
+          conditions:
+            any:
+              # --- THIS IS THE CORRECT IMPLEMENTATION ---
+              # We run the expensive regex against `request.object.apiVersion`,
+              # a string that is guaranteed to exist on every resource.
+              - key: "{{ request.object.apiVersion }}"
+                operator: NotMatchesRegex
+                value: "^([a-z0-9](-?[a-z0-9])*.?)+$"
