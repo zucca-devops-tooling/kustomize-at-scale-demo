@@ -5,7 +5,9 @@
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: force-io-per-resource
+  # --- THIS IS THE FIX ---
+  # The name has been changed to be unique and avoid Kustomize build conflicts.
+  name: force-io-per-resource-alpha
   annotations:
     policies.kyverno.io/title: Force I/O Wait Per Resource
     policies.kyverno.io/category: Benchmarking

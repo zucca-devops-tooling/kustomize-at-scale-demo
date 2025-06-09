@@ -24,20 +24,23 @@ spec:
           - resources:
               kinds:
                 - "*"
-      # --- THIS IS THE FIX ---
-      # This precondition block acts as a guard. It ensures the rule only runs on
-      # resources that have a metadata.name field, preventing errors.
       preconditions:
         all:
           - key: "{{ request.object.metadata.name || '' }}"
             operator: NotEquals
             value: ""
-      # --- END OF FIX ---
       validate:
-        message: "Forcing CPU-intensive regex for resource {{request.object.kind}}/{{request.object.metadata.name}}."
+        message: "Forcing CPU-intensive regex for resource {{ request.object.kind | default('unknown-kind') }}/{{ request.object.metadata.name | default('unknown-name') }}."
         deny:
           conditions:
             any:
               - key: "{{ request.object.metadata.name }}"
-                operator: MatchesRegex
-                value: "([a-zA-Z]+s)*$"
+                # We use NotMatchesRegex because this complex pattern will likely not match,
+                # which means the rule result will be 'pass'. However, the regex engine
+                # MUST still perform the full, expensive evaluation before it can determine this.
+                operator: NotMatchesRegex
+                # --- THIS IS THE FIX ---
+                # This new regex is significantly more complex. The nested quantifiers
+                # (e.g., the '+' inside the '*') force the regex engine to try an
+                # exponential number of possibilities, consuming a large amount of CPU.
+                value: "^([a-z0-9](-?[a-z0-9])*.?)+$"
