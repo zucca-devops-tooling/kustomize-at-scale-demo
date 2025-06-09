@@ -18,16 +18,6 @@ spec:
   background: true
   rules:
     - name: run-complex-regex-per-resource
-      match:
-        any:
-          - resources:
-              kinds:
-                - "*"
-      preconditions:
-        all:
-          - key: "{{ request.object.kind }}"
-            operator: NotEquals
-            value: null
       validate:
         message: "Forcing CPU-intensive regex for resource."
         deny:
