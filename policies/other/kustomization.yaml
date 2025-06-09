@@ -7,7 +7,6 @@ resources:
   - block-stale-images.yaml
   - check-ingress-nginx-controller-version-and-annotation-policy.yaml
   - check-nvidia-gpu.yaml
-  - create-default-pdb.yaml
   - deployment-replicas-higher-than-pdb.yaml
   - generate-networkpolicy-existing.yaml
   - metadata-match-regex.yaml
