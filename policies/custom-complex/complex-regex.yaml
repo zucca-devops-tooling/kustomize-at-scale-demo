@@ -1,23 +1,14 @@
 # This policy is designed to be CPU-BOUND for performance testing.
 # It runs a complex regex against a field that is guaranteed to exist on every resource.
-
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: force-cpu-per-resource
-  annotations:
-    policies.kyverno.io/title: Force CPU Burn Per Resource
-    policies.kyverno.io/category: Benchmarking
-    policies.kyverno.io/subject: All Resources
-    policies.kyverno.io/description: >-
-      This is a benchmarking tool. It consumes CPU cycles by running a complex
-      regex known for 'catastrophic backtracking' against the kind
-      of every resource.
+  name: cpu-burn-container-name
 spec:
   validationFailureAction: Audit
   background: true
   rules:
-    - name: run-complex-regex-per-resource
+    - name: burn-cpu-via-container-name
       match:
         any:
           - resources:
@@ -46,11 +37,12 @@ spec:
                 - PersistentVolumeClaim
                 - NetworkPolicy
       validate:
-        message: "Forcing CPU-intensive regex for resource."
-        deny:
-          conditions:
-            any:
-              - key: "{{ kind }}"
-                operator: NotMatchesRegex
-                # This complex regex forces the engine to do a lot of work.
-                value: "^([a-z0-9](-?[a-z0-9])*.?)+$"
+        message: "Simulating CPU load on container names."
+        foreach:
+          - list: "request.object.spec.containers"
+            deny:
+              conditions:
+                all:
+                  - key: "{{ element.name }}"
+                    operator: NotMatchesRegex
+                    value: "^([a-z0-9](-?[a-z0-9])*.?)+$"  # deliberately inefficient regex
