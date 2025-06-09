@@ -13,19 +13,40 @@ spec:
         any:
           - resources:
               kinds:
-                - "*"  # Apply to all resources
+                - Pod
+                - Deployment
+                - ConfigMap
+                - Secret
+                - CronJob
+                - Service
+                - Namespace
+                - OCIRepository
+                - Job
+                - StatefulSet
+                - DaemonSet
+                - Ingress
+                - Role
+                - RoleBinding
+                - ClusterRole
+                - ClusterRoleBinding
+                - ClusterSecretStore
+                - ReplicationSource
+                - ReplicationDestination
+                - Provider
+                - GitRepository
+                - PersistentVolumeClaim
+                - NetworkPolicy
       preconditions:
         all:
-          - key: "{{ request.object.metadata.labels }}"
+          - key: "{{ resource.metadata.labels }}"
             operator: Defined
       validate:
         message: "Simulating CPU burn via regex over label keys."
         foreach:
-          - list: "request.object.metadata.labels"
+          - list: "resource.metadata.labels"
             deny:
               conditions:
                 all:
                   - key: "{{ element.key }}"
                     operator: NotMatchesRegex
-                    # Costly regex for benchmarking
                     value: "^([a-z0-9](-?[a-z0-9])*.?)+$"
