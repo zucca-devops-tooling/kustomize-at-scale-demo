@@ -1,0 +1,39 @@
+# This policy is designed to be CPU-BOUND for performance testing.
+# It forces Kyverno to perform a computationally expensive Regex match for
+# every single resource processed by the `apply` command.
+
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: force-cpu-per-resource
+  annotations:
+    policies.kyverno.io/title: Force CPU Burn Per Resource
+    policies.kyverno.io/category: Benchmarking
+    policies.kyverno.io/subject: All Resources
+    policies.kyverno.io/description: >-
+      This is a benchmarking tool. It consumes CPU cycles by running a complex
+      regex known for 'catastrophic backtracking' against the metadata name
+      of every resource.
+spec:
+  validationFailureAction: Audit
+  background: true
+  rules:
+    - name: run-complex-regex-per-resource
+      match:
+        any:
+          - resources:
+              kinds:
+                - "*"
+      validate:
+        message: "Forcing CPU-intensive regex for resource {{request.object.kind}}/{{request.object.metadata.name}}."
+        # This deny block forces the regex evaluation.
+        # The condition will always be false, so the rule will always result in a 'pass',
+        # but it forces the expensive regex engine to run every time.
+        deny:
+          conditions:
+            any:
+              - key: "{{ request.object.metadata.name }}"
+                operator: MatchesRegex
+                # This regex pattern is known for "catastrophic backtracking".
+                # It will consume significant CPU time to evaluate.
+                value: "([a-zA-Z]+s)*$"
