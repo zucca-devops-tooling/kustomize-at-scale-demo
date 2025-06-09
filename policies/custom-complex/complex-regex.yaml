@@ -20,22 +20,10 @@ spec:
                 - CronJob
                 - Service
                 - Namespace
-                - OCIRepository
                 - Job
                 - StatefulSet
                 - DaemonSet
                 - Ingress
-                - Role
-                - RoleBinding
-                - ClusterRole
-                - ClusterRoleBinding
-                - ClusterSecretStore
-                - ReplicationSource
-                - ReplicationDestination
-                - Provider
-                - GitRepository
-                - PersistentVolumeClaim
-                - NetworkPolicy
       preconditions:
         all:
           - key: "{{ resource.metadata.labels }}"
@@ -44,9 +32,13 @@ spec:
         message: "Simulating CPU burn via regex over label keys."
         foreach:
           - list: "resource.metadata.labels"
+            context:
+              - name: labelKey
+                variable:
+                  jmesPath: "key"
             deny:
               conditions:
                 all:
-                  - key: "{{ element.key }}"
+                  - key: "{{ labelKey }}"
                     operator: NotMatchesRegex
                     value: "^([a-z0-9](-?[a-z0-9])*.?)+$"
