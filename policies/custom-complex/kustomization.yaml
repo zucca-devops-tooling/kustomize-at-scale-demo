@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
   - complex-regex.yaml
   - disallow-duplicate-ingress-host.yaml
+  - force-io-bound.yaml
   - generate-allow-same-group.yaml
   - validate-sa-annotation.yaml
