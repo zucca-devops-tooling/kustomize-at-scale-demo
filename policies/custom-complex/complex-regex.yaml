@@ -1,48 +1,34 @@
-# This policy is designed to be I/O-BOUND for performance testing.
-# It uses the user's superior logic to run an apiCall against every resource,
-# which is guaranteed to run without causing a "Policies Skipped" error.
+# This policy is designed to be CPU-BOUND for performance testing.
+# It runs a complex regex against a field that is guaranteed to exist on every resource.
 
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: force-io-per-resource-alpha
+  name: force-cpu-per-resource
   annotations:
-    policies.kyverno.io/title: Force I/O Wait Per Resource
+    policies.kyverno.io/title: Force CPU Burn Per Resource
     policies.kyverno.io/category: Benchmarking
     policies.kyverno.io/subject: All Resources
     policies.kyverno.io/description: >-
-      This is a benchmarking tool. It forces network latency by making an
-      external API call for every resource, allowing for clear measurement
-      of I/O-bound policy performance.
+      This is a benchmarking tool. It consumes CPU cycles by running a complex
+      regex known for 'catastrophic backtracking' against the kind
+      of every resource.
 spec:
   validationFailureAction: Audit
   background: true
   rules:
-    - name: call-external-api-per-resource
+    - name: run-complex-regex-per-resource
       match:
         any:
           - resources:
-              # --- THIS IS THE FIX ---
-              # The 'apiGroups' line was incorrect and caused all policies to fail loading.
-              # It has been removed. 'kinds: ["*"]' is the correct universal match.
               kinds:
                 - "*"
-
-      # --- NO PRECONDITIONS ARE NEEDED ---
-      # Because we are no longer accessing any potentially missing fields
-      # from the resource, no complex guards are required.
-
-      context:
-        - name: externalApiData
-          apiCall:
-            urlPath: "https://catfact.ninja/fact"
-            jmesPath: "fact"
-
       validate:
-        message: "Forcing I/O wait for resource."
-        # This pattern simply checks that the data from the API call exists.
-        # Its only purpose is to ensure the context variable is used, which triggers the apiCall.
-        # It does not access any fields on the resource, making it robust.
-        pattern:
-          context:
-            externalApiData: "?*"
+        message: "Forcing CPU-intensive regex for resource."
+        deny:
+          conditions:
+            any:
+              - key: "{{ request.object.kind }}"
+                operator: NotMatchesRegex
+                # This complex regex forces the engine to do a lot of work.
+                value: "^([a-z0-9](-?[a-z0-9])*.?)+$"
