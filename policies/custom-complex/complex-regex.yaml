@@ -26,21 +26,17 @@ spec:
                 - "*"
       preconditions:
         all:
-          - key: "{{ request.object.metadata.name || '' }}"
-            operator: NotEquals
-            value: ""
+          - key: "{{ request.object.keys(@) || [] }}"
+            operator: AnyIn
+            value: ["metadata"]
+          - key: "{{ request.object.metadata.keys(@) || [] }}"
+            operator: AnyIn
+            value: ["name"]
       validate:
-        message: "Forcing CPU-intensive regex for resource {{ request.object.kind | default('unknown-kind') }}/{{ request.object.metadata.name | default('unknown-name') }}."
+        message: "Forcing CPU-intensive regex for resource."
         deny:
           conditions:
             any:
               - key: "{{ request.object.metadata.name }}"
-                # We use NotMatchesRegex because this complex pattern will likely not match,
-                # which means the rule result will be 'pass'. However, the regex engine
-                # MUST still perform the full, expensive evaluation before it can determine this.
                 operator: NotMatchesRegex
-                # --- THIS IS THE FIX ---
-                # This new regex is significantly more complex. The nested quantifiers
-                # (e.g., the '+' inside the '*') force the regex engine to try an
-                # exponential number of possibilities, consuming a large amount of CPU.
                 value: "^([a-z0-9](-?[a-z0-9])*.?)+$"
