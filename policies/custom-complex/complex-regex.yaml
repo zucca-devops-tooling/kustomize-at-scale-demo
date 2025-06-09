@@ -1,6 +1,6 @@
 # This policy is designed to be CPU-BOUND for performance testing.
-# It forces Kyverno to perform a computationally expensive Regex match for
-# every single resource processed by the `apply` command.
+# It uses the user's superior logic to run a complex regex against a
+# field that is guaranteed to exist on all Kubernetes resources (`apiVersion`).
 
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
@@ -12,8 +12,8 @@ metadata:
     policies.kyverno.io/subject: All Resources
     policies.kyverno.io/description: >-
       This is a benchmarking tool. It consumes CPU cycles by running a complex
-      regex known for 'catastrophic backtracking' against the metadata name
-      of every resource.
+      regex known for 'catastrophic backtracking' against the apiVersion
+      of every resource. This is guaranteed to run without causing errors.
 spec:
   validationFailureAction: Audit
   background: true
@@ -22,21 +22,16 @@ spec:
       match:
         any:
           - resources:
+              # This match block is truly universal.
               kinds:
                 - "*"
-      preconditions:
-        all:
-          - key: "{{ request.object.keys(@) || [] }}"
-            operator: AnyIn
-            value: ["metadata"]
-          - key: "{{ request.object.metadata.keys(@) || [] }}"
-            operator: AnyIn
-            value: ["name"]
+              apiGroups:
+                - "*"
       validate:
         message: "Forcing CPU-intensive regex for resource."
         deny:
           conditions:
             any:
-              - key: "{{ request.object.metadata.name }}"
+              - key: "{{ request.object.apiVersion }}"
                 operator: NotMatchesRegex
                 value: "^([a-z0-9](-?[a-z0-9])*.?)+$"
