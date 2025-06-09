@@ -4,6 +4,7 @@ namespace: argocd
 resources:
 - data-science
 - operate-first
+- thoth
 - rekor
 - cluster-management
 - mesh-for-data
