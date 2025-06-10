@@ -13,17 +13,7 @@ spec:
         any:
           - resources:
               kinds:
-                - Pod
                 - Deployment
-                - ConfigMap
-                - Secret
-                - CronJob
-                - Service
-                - Namespace
-                - Job
-                - StatefulSet
-                - DaemonSet
-                - Ingress
       preconditions:
         all:
           - key: "{{ resource.metadata.labels }}"
