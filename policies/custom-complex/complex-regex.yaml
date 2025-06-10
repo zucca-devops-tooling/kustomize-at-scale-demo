@@ -3,29 +3,22 @@
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: cpu-burn-via-labels
+  name: cpu-burn-via-name
 spec:
   validationFailureAction: Audit
   background: true
   rules:
-    - name: cpu-burn-labels
+    - name: cpu-burn-name
       match:
         any:
           - resources:
               kinds:
                 - Deployment
-      preconditions:
-        all:
-          - key: "{{ resource.metadata.labels }}"
-            operator: Defined
       validate:
-        message: "Simulating CPU burn via regex over label keys."
-        foreach:
-          - list: "keys(resource.metadata.labels)"
-            deny:
-              conditions:
-                all:
-                  - key: "{{ element }}"
-                    operator: NotMatchesRegex
-                    # This is an intentionally expensive regex (catastrophic backtracking).
-                    value: "^([a-z0-9](-?[a-z0-9])*.?)+$"
+        message: "Simulating CPU burn via complex regex on metadata.name."
+        deny:
+          conditions:
+            all:
+              - key: "{{ request.object.metadata.name }}"
+                operator: NotMatchesRegex
+                value: "^([a-z0-9](-?[a-z0-9])*.?)+$"
