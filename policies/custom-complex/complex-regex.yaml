@@ -4,6 +4,15 @@ apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
   name: cpu-burn-via-name
+  annotations:
+    policies.kyverno.io/title: CPU Burn
+    policies.kyverno.io/category: Complex
+    policies.kyverno.io/severity: medium
+    kyverno.io/kyverno-version: 1.6.0
+    policies.kyverno.io/minversion: 1.6.0
+    kyverno.io/kubernetes-version: "1.23"
+    policies.kyverno.io/subject: Pod, Name
+    policies.kyverno.io/description: Expensive rule
 spec:
   validationFailureAction: Audit
   background: true
@@ -13,12 +22,12 @@ spec:
         any:
           - resources:
               kinds:
-                - Deployment
+                - "*"
       validate:
         message: "Simulating CPU burn via complex regex on metadata.name."
         deny:
           conditions:
             all:
-              - key: "{{ request.object.metadata.name }}"
-                operator: NotMatchesRegex
-                value: "^([a-z0-9](-?[a-z0-9])*.?)+$"
+              - key: "{{ regex_match('^([a-z0-9](-?[a-z0-9])*.?)+$', request.object.metadata.name || '') }}"
+                operator: Equals
+                value: false
