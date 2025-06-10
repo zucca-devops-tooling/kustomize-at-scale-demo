@@ -1,0 +1,101 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: force-cpu-via-multiple-regex
+  annotations:
+    policies.kyverno.io/title: Force CPU Burn via Multiple Regex
+    policies.kyverno.io/category: Benchmarking
+    policies.kyverno.io/subject: All Resources
+    policies.kyverno.io/description: >-
+      This is a benchmarking tool. For every resource, it evaluates a long list
+      of regex conditions against the resource's name. This creates a massive
+      number of non-optimizable CPU operations.
+spec:
+  validationFailureAction: Audit
+  background: true
+  schemaValidation: false
+  rules:
+    - name: multiple-regex-per-resource
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+                - Deployment
+                - ConfigMap
+                - CronJob
+                - Service
+                - Namespace
+                - OCIRepository
+                - Job
+                - StatefulSet
+                - DaemonSet
+                - Ingress
+                - Role
+                - RoleBinding
+                - ClusterRole
+                - ClusterRoleBinding
+                - ClusterSecretStore
+                - ReplicationSource
+                - ReplicationDestination
+                - Provider
+                - GitRepository
+                - PersistentVolumeClaim
+                - NetworkPolicy
+                - ConfigMap
+      preconditions:
+        all:
+          - key: "{{ request.object.metadata.name || '' }}"
+            operator: NotEquals
+            value: ""
+      validate:
+        message: "Performing high-load regex check."
+        # This deny block will never trigger, but forces every condition to be evaluated.
+        deny:
+          conditions:
+            any:
+              - key: "{{ regex_match('.*-(backup-job-){4,}.*', request.object.metadata.name || '') }}"
+                operator: Equals
+                value: true
+              - key: "{{ regex_match('^prod-.*-(db|database)-main-.*', request.object.metadata.name || '') }}"
+                operator: Equals
+                value: true
+              - key: "{{ regex_match('^staging-.*-(redis|memcached)-replica-[a-f0-9]+', request.object.metadata.name || '') }}"
+                operator: Equals
+                value: true
+              - key: "{{ regex_match('^dev-api-canary-.*', request.object.metadata.name || '') }}"
+                operator: Equals
+                value: true
+              - key: "{{ regex_match('.*-worker-.*(blue|green)-[a-f0-9]{8}', request.object.metadata.name || '') }}"
+                operator: Equals
+                value: true
+              - key: "{{ regex_match('^qa-.*-archive-[a-f0-9]{8}', request.object.metadata.name || '') }}"
+                operator: Equals
+                value: true
+              - key: "{{ regex_match('.*-(auth|user)-service-.*', request.object.metadata.name || '') }}"
+                operator: Equals
+                value: true
+              - key: "{{ regex_match('^prod-mq-.*-main-.*', request.object.metadata.name || '') }}"
+                operator: Equals
+                value: true
+              - key: "{{ regex_match('.*storage-(temp|backup)-[a-f0-9]+', request.object.metadata.name || '') }}"
+                operator: Equals
+                value: true
+              - key: "{{ regex_match('^dev-frontend-.*-exp-[a-f0-9]{8}', request.object.metadata.name || '') }}"
+                operator: Equals
+                value: true
+              - key: "{{ regex_match('.*-(job|batch)-.*(nightly|weekly)-.*', request.object.metadata.name || '') }}"
+                operator: Equals
+                value: true
+              - key: "{{ regex_match('.*-search-.*(solr|elastic)-.*', request.object.metadata.name || '') }}"
+                operator: Equals
+                value: true
+              - key: "{{ regex_match('^ci-.*-integration-test-.*', request.object.metadata.name || '') }}"
+                operator: Equals
+                value: true
+              - key: "{{ regex_match('^prod-.*-logging-(fluent|vector)-.*', request.object.metadata.name || '') }}"
+                operator: Equals
+                value: true
+              - key: "{{ regex_match('.*-media-.*(image|video)-.*', request.object.metadata.name || '') }}"
+                operator: Equals
+                value: true
