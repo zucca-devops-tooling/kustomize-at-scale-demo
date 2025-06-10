@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-worker-blue-d5cb9c7d
+data:
+  app: "app-14"
+  resource: "resource-13"

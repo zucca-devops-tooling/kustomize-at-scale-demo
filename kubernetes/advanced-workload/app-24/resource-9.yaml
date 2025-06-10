@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-frontend-replica-bfb549fa
+data:
+  app: "app-24"
+  resource: "resource-9"

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-cache-temp-1d350d9c
+data:
+  app: "app-8"
+  resource: "resource-26"

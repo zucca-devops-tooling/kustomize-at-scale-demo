@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-api-archive-fe647c0b
+data:
+  app: "app-8"
+  resource: "resource-1"

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-worker-archive-4c71c1db
+data:
+  app: "app-16"
+  resource: "resource-17"

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-auth-archive-fc154c5b
+data:
+  app: "app-9"
+  resource: "resource-11"

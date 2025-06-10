@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-frontend-replica-36a01d08
+data:
+  app: "app-16"
+  resource: "resource-2"

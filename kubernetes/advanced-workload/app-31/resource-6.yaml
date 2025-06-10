@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-api-main-6f1dcf86
+data:
+  app: "app-31"
+  resource: "resource-6"

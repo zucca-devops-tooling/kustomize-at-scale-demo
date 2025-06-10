@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-worker-archive-7bddc444
+data:
+  app: "app-44"
+  resource: "resource-5"

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-frontend-replica-8a00289b
+data:
+  app: "app-45"
+  resource: "resource-19"

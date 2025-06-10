@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-frontend-backup-aad605fe
+data:
+  app: "app-22"
+  resource: "resource-8"

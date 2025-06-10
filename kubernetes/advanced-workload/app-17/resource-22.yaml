@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-cache-canary-d317cbe0
+data:
+  app: "app-17"
+  resource: "resource-22"

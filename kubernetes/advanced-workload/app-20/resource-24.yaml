@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-mq-archive-fb9466f6
+data:
+  app: "app-20"
+  resource: "resource-24"

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-database-replica-db45ee4a
+data:
+  app: "app-46"
+  resource: "resource-18"

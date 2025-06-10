@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-cache-green-1c4624e3
+data:
+  app: "app-8"
+  resource: "resource-15"

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-auth-temp-05892776
+data:
+  app: "app-30"
+  resource: "resource-16"

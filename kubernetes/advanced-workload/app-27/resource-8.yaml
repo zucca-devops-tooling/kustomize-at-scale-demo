@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-storage-canary-a69db80d
+data:
+  app: "app-27"
+  resource: "resource-8"

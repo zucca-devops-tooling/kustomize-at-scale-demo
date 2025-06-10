@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-api-blue-2d8ed299
+data:
+  app: "app-24"
+  resource: "resource-8"

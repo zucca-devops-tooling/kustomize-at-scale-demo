@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-api-canary-bb49f40f
+data:
+  app: "app-22"
+  resource: "resource-29"

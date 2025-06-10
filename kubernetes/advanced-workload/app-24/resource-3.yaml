@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-mq-green-7c2c0c69
+data:
+  app: "app-24"
+  resource: "resource-3"

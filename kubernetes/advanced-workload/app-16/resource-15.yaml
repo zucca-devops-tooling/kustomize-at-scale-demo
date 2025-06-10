@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-api-replica-7bc2a59a
+data:
+  app: "app-16"
+  resource: "resource-15"

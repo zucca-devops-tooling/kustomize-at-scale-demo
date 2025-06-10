@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-worker-backup-511afa8d
+data:
+  app: "app-29"
+  resource: "resource-4"

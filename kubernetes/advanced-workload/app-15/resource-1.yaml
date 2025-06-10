@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-storage-canary-a5d9c8fa
+data:
+  app: "app-15"
+  resource: "resource-1"

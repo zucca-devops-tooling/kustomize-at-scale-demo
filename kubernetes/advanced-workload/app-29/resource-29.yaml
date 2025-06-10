@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-auth-main-2ca2919d
+data:
+  app: "app-29"
+  resource: "resource-29"

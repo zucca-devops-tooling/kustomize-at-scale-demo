@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-auth-replica-f7f911c0
+data:
+  app: "app-11"
+  resource: "resource-28"

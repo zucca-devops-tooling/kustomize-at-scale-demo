@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-api-green-a0955d60
+data:
+  app: "app-18"
+  resource: "resource-14"

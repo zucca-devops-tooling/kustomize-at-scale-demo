@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-database-replica-cd5f51c7
+data:
+  app: "app-2"
+  resource: "resource-5"

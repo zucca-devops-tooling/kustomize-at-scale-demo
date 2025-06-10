@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-cache-main-8539e6ba
+data:
+  app: "app-28"
+  resource: "resource-14"

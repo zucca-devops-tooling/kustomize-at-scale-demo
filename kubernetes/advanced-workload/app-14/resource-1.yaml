@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-worker-replica-e0e07602
+data:
+  app: "app-14"
+  resource: "resource-1"

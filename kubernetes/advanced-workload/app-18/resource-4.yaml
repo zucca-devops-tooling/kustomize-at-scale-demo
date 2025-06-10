@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-cache-replica-4acefcc2
+data:
+  app: "app-18"
+  resource: "resource-4"

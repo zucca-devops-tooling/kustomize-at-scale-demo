@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-database-canary-d603201c
+data:
+  app: "app-15"
+  resource: "resource-9"

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-database-archive-1cc6d37d
+data:
+  app: "app-29"
+  resource: "resource-2"

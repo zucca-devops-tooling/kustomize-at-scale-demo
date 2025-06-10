@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-storage-temp-d507c7ed
+data:
+  app: "app-35"
+  resource: "resource-18"

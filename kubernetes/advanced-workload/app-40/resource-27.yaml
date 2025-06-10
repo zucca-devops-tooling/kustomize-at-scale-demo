@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-worker-main-1a6f436e
+data:
+  app: "app-40"
+  resource: "resource-27"

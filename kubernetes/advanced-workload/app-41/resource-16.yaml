@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-auth-green-b62b38cd
+data:
+  app: "app-41"
+  resource: "resource-16"

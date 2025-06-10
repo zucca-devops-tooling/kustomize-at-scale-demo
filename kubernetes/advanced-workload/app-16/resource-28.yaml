@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-frontend-temp-32df7c7c
+data:
+  app: "app-16"
+  resource: "resource-28"

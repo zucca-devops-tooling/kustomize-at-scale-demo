@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-storage-green-7f9661a0
+data:
+  app: "app-13"
+  resource: "resource-18"

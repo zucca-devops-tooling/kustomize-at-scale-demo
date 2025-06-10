@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-mq-canary-5de1466c
+data:
+  app: "app-3"
+  resource: "resource-17"

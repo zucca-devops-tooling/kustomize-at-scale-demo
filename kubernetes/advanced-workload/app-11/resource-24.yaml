@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-database-backup-9ccde457
+data:
+  app: "app-11"
+  resource: "resource-24"

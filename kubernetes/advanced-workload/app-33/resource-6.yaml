@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-cache-blue-38b84936
+data:
+  app: "app-33"
+  resource: "resource-6"

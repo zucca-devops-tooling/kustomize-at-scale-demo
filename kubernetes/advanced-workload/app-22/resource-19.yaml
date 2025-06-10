@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-cache-main-6cec2f95
+data:
+  app: "app-22"
+  resource: "resource-19"

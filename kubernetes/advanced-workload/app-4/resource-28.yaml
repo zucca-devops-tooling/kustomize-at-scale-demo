@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-cache-replica-c75b7270
+data:
+  app: "app-4"
+  resource: "resource-28"

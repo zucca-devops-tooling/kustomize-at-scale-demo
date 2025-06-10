@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-cache-green-df95998b
+data:
+  app: "app-24"
+  resource: "resource-2"

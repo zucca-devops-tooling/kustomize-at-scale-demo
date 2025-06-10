@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-cache-blue-3647d18a
+data:
+  app: "app-48"
+  resource: "resource-18"

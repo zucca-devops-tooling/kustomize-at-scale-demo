@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-storage-backup-ae3f333d
+data:
+  app: "app-11"
+  resource: "resource-25"

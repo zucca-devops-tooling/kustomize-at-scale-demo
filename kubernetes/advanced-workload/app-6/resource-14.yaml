@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-api-main-1c150096
+data:
+  app: "app-6"
+  resource: "resource-14"

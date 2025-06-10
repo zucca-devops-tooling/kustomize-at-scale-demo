@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-database-archive-bb01654b
+data:
+  app: "app-29"
+  resource: "resource-7"

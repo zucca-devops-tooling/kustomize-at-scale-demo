@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-mq-canary-29ffa527
+data:
+  app: "app-19"
+  resource: "resource-15"

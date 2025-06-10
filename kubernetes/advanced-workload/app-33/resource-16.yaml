@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-storage-replica-e7ea7a5a
+data:
+  app: "app-33"
+  resource: "resource-16"

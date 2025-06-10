@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-auth-backup-3d8e336a
+data:
+  app: "app-3"
+  resource: "resource-16"

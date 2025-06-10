@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-worker-canary-a72d292e
+data:
+  app: "app-16"
+  resource: "resource-13"

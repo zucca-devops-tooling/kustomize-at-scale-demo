@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-cache-blue-4d53a5c6
+data:
+  app: "app-41"
+  resource: "resource-21"

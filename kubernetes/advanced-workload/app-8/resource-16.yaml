@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-auth-main-26a7658c
+data:
+  app: "app-8"
+  resource: "resource-16"

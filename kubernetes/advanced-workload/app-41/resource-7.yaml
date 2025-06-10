@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-auth-replica-576979d3
+data:
+  app: "app-41"
+  resource: "resource-7"

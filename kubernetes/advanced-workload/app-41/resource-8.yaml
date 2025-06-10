@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-storage-replica-c2f14ccb
+data:
+  app: "app-41"
+  resource: "resource-8"

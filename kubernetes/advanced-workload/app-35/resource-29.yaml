@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-mq-blue-8b0e3d5a
+data:
+  app: "app-35"
+  resource: "resource-29"

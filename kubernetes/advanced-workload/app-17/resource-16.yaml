@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-auth-temp-ed524d9b
+data:
+  app: "app-17"
+  resource: "resource-16"

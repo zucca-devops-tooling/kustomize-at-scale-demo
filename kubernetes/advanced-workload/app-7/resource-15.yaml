@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-auth-blue-159eac8e
+data:
+  app: "app-7"
+  resource: "resource-15"

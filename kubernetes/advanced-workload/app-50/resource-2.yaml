@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-database-main-4d5be54b
+data:
+  app: "app-50"
+  resource: "resource-2"

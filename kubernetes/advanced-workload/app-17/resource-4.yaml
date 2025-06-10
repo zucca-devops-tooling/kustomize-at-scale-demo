@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-worker-blue-f22c946a
+data:
+  app: "app-17"
+  resource: "resource-4"

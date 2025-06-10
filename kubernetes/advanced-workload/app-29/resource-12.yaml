@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-database-temp-fb70ef2e
+data:
+  app: "app-29"
+  resource: "resource-12"

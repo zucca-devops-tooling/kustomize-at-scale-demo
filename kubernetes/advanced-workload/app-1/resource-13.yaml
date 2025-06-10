@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-auth-replica-cee2241b
+data:
+  app: "app-1"
+  resource: "resource-13"

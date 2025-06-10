@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-worker-green-ee5d1b67
+data:
+  app: "app-6"
+  resource: "resource-12"

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-api-canary-db3affcb
+data:
+  app: "app-49"
+  resource: "resource-17"

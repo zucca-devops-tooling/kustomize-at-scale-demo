@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-storage-blue-0b29dfbf
+data:
+  app: "app-35"
+  resource: "resource-26"

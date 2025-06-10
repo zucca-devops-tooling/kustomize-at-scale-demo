@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-database-green-8d83cf42
+data:
+  app: "app-44"
+  resource: "resource-8"

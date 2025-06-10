@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-database-temp-58dd4755
+data:
+  app: "app-35"
+  resource: "resource-5"

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-auth-archive-96e3869e
+data:
+  app: "app-23"
+  resource: "resource-24"

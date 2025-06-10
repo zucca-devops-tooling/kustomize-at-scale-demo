@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-database-blue-c5a4ec4c
+data:
+  app: "app-35"
+  resource: "resource-13"

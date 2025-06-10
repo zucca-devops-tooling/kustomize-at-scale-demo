@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-mq-archive-db904e8c
+data:
+  app: "app-42"
+  resource: "resource-19"

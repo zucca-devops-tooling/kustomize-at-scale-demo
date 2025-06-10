@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-auth-blue-fb1f364d
+data:
+  app: "app-15"
+  resource: "resource-5"

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-cache-temp-4c6d2fe9
+data:
+  app: "app-22"
+  resource: "resource-26"

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-worker-temp-8ca0edf4
+data:
+  app: "app-22"
+  resource: "resource-18"

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-backup-job-backup-job-backup-job-backup-job-497a9a85
+data:
+  app: "app-20"
+  resource: "resource-10"

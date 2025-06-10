@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-auth-archive-b0596db3
+data:
+  app: "app-32"
+  resource: "resource-25"

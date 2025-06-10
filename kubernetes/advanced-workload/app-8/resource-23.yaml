@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-auth-archive-665440af
+data:
+  app: "app-8"
+  resource: "resource-23"

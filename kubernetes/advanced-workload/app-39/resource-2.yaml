@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-api-green-82ba064d
+data:
+  app: "app-39"
+  resource: "resource-2"

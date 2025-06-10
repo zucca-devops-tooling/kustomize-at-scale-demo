@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-storage-archive-fb2a749d
+data:
+  app: "app-45"
+  resource: "resource-23"

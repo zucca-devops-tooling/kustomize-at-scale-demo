@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-cache-replica-d0a1ae12
+data:
+  app: "app-26"
+  resource: "resource-15"

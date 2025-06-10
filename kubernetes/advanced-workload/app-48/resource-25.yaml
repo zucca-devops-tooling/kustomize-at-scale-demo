@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-storage-replica-a120cd5e
+data:
+  app: "app-48"
+  resource: "resource-25"

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-auth-canary-d393d2d9
+data:
+  app: "app-6"
+  resource: "resource-17"

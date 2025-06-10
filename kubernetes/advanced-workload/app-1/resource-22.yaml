@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-cache-archive-d5169c2d
+data:
+  app: "app-1"
+  resource: "resource-22"

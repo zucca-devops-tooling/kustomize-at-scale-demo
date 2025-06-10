@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-worker-archive-509332bd
+data:
+  app: "app-11"
+  resource: "resource-2"

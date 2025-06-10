@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-worker-temp-bfea5b1c
+data:
+  app: "app-48"
+  resource: "resource-3"

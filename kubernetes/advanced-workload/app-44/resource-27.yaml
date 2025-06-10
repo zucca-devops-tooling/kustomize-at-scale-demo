@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-storage-main-e825baec
+data:
+  app: "app-44"
+  resource: "resource-27"

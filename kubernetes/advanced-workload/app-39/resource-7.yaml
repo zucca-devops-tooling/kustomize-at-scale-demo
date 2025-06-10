@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-mq-temp-ecb09437
+data:
+  app: "app-39"
+  resource: "resource-7"

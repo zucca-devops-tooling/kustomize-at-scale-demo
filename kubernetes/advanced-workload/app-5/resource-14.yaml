@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-cache-blue-7090a4af
+data:
+  app: "app-5"
+  resource: "resource-14"

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-storage-canary-0a6d344d
+data:
+  app: "app-40"
+  resource: "resource-9"

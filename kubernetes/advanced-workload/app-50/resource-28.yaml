@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-mq-archive-3eb8858c
+data:
+  app: "app-50"
+  resource: "resource-28"

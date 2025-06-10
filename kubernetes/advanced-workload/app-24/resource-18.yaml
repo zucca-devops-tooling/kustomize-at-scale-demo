@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-mq-replica-db1743da
+data:
+  app: "app-24"
+  resource: "resource-18"

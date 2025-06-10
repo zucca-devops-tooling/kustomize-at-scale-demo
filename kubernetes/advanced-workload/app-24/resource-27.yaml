@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-database-main-f68eb59b
+data:
+  app: "app-24"
+  resource: "resource-27"

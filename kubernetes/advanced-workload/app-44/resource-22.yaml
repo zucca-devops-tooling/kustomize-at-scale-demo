@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-auth-blue-59e8e143
+data:
+  app: "app-44"
+  resource: "resource-22"

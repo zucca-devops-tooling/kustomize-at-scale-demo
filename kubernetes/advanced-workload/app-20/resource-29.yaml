@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-mq-replica-e5f58c7b
+data:
+  app: "app-20"
+  resource: "resource-29"

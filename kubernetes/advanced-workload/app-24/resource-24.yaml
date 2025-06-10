@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-storage-blue-a1c14dcb
+data:
+  app: "app-24"
+  resource: "resource-24"

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-worker-main-b6313f9d
+data:
+  app: "app-7"
+  resource: "resource-17"

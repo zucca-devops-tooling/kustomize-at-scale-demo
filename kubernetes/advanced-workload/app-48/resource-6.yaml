@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-database-blue-5b1c6a44
+data:
+  app: "app-48"
+  resource: "resource-6"

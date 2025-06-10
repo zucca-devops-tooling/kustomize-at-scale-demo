@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-database-blue-57d69586
+data:
+  app: "app-9"
+  resource: "resource-17"

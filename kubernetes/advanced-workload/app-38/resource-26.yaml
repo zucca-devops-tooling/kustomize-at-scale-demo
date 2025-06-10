@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-mq-replica-ad388edc
+data:
+  app: "app-38"
+  resource: "resource-26"

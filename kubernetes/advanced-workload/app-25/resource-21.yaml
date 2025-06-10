@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-auth-main-d0200cfa
+data:
+  app: "app-25"
+  resource: "resource-21"

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-worker-archive-952457ac
+data:
+  app: "app-24"
+  resource: "resource-7"

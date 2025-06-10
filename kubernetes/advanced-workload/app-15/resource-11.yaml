@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-auth-temp-1ed51d6b
+data:
+  app: "app-15"
+  resource: "resource-11"

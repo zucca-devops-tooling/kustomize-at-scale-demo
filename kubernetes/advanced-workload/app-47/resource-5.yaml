@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-worker-replica-b71e1caa
+data:
+  app: "app-47"
+  resource: "resource-5"

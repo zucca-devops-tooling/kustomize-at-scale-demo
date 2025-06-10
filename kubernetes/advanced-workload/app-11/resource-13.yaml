@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-database-green-d88eddcd
+data:
+  app: "app-11"
+  resource: "resource-13"

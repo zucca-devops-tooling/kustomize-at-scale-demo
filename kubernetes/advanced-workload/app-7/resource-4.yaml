@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-auth-green-e933e812
+data:
+  app: "app-7"
+  resource: "resource-4"

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-api-blue-365c87a8
+data:
+  app: "app-42"
+  resource: "resource-29"

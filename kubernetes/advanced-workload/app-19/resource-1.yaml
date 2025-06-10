@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-cache-main-a33f0a97
+data:
+  app: "app-19"
+  resource: "resource-1"

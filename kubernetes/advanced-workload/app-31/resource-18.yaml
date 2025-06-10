@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-frontend-archive-5f9cc9b4
+data:
+  app: "app-31"
+  resource: "resource-18"

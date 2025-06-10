@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-frontend-backup-11393f8b
+data:
+  app: "app-45"
+  resource: "resource-21"

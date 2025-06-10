@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-frontend-backup-d95439ff
+data:
+  app: "app-45"
+  resource: "resource-26"

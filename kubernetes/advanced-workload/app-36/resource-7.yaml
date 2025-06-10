@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-storage-archive-ac86d3d1
+data:
+  app: "app-36"
+  resource: "resource-7"

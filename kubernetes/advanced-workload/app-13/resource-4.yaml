@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-frontend-green-18f5f976
+data:
+  app: "app-13"
+  resource: "resource-4"

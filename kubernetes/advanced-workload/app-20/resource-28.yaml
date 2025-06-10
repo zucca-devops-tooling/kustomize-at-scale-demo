@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-api-blue-b7baa26c
+data:
+  app: "app-20"
+  resource: "resource-28"

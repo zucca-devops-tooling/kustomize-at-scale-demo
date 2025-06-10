@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-api-canary-9b99c2bd
+data:
+  app: "app-44"
+  resource: "resource-23"

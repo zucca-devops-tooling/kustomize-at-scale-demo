@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-api-temp-ce41e56b
+data:
+  app: "app-4"
+  resource: "resource-11"

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-cache-replica-152d1640
+data:
+  app: "app-48"
+  resource: "resource-27"

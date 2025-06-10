@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-frontend-temp-a345fa77
+data:
+  app: "app-13"
+  resource: "resource-13"

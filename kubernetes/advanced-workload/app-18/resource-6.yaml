@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-storage-main-03d1a4fa
+data:
+  app: "app-18"
+  resource: "resource-6"

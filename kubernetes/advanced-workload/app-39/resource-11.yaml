@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dev-frontend-main-880fbdac
+data:
+  app: "app-39"
+  resource: "resource-11"

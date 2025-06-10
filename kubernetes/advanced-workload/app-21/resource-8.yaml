@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-cache-main-ec4dafae
+data:
+  app: "app-21"
+  resource: "resource-8"

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-mq-green-d0270f41
+data:
+  app: "app-25"
+  resource: "resource-7"

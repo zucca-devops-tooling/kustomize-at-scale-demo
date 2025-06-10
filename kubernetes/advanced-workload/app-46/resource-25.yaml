@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-api-blue-baf60baf
+data:
+  app: "app-46"
+  resource: "resource-25"

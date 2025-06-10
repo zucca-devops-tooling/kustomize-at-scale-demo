@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-worker-main-b23cd9ac
+data:
+  app: "app-39"
+  resource: "resource-17"

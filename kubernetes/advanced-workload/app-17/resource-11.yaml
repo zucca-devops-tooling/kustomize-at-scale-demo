@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-database-replica-81729fac
+data:
+  app: "app-17"
+  resource: "resource-11"

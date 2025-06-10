@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-frontend-main-297a962c
+data:
+  app: "app-33"
+  resource: "resource-8"

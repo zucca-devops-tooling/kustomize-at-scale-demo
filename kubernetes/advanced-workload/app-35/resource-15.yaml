@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prod-auth-canary-22c88cac
+data:
+  app: "app-35"
+  resource: "resource-15"

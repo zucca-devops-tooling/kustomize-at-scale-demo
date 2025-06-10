@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-cache-temp-62d4f80a
+data:
+  app: "app-15"
+  resource: "resource-27"

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-cache-archive-c679d40e
+data:
+  app: "app-11"
+  resource: "resource-19"

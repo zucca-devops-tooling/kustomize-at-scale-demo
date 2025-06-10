@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-frontend-green-a6a586a5
+data:
+  app: "app-47"
+  resource: "resource-29"

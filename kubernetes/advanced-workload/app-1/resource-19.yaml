@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qa-storage-main-e1721c25
+data:
+  app: "app-1"
+  resource: "resource-19"
