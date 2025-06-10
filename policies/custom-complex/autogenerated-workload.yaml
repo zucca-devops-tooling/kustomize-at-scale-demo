@@ -53,35 +53,37 @@ spec:
         # This deny block will never trigger, but forces every condition to be evaluated.
         deny:
           conditions:
-            any:
-              - key: "{{ regex_match('.*-(backup-job-){4,}.*', request.object.metadata.name || '') }}"
+            # The 'all' block means the deny only happens if ALL conditions are true.
+            all:
+              # --- THIS IS THE EXPENSIVE PART ---
+              # This is a much longer list of more complex regex patterns.
+              # Kyverno must evaluate every single one for every resource.
+              # To make the policy even slower, simply add more lines.
+              - key: "{{ regex_match('^prod-.*(database|storage|cache).*(main|replica)-[a-f0-9]{8}$', request.object.metadata.name || '') }}"
                 operator: Equals
                 value: true
-              - key: "{{ regex_match('^prod-.*-(db|database)-main-.*', request.object.metadata.name || '') }}"
+              - key: "{{ regex_match('^staging-.*(api|worker|frontend).*(temp|canary)-[a-f0-9]{8}$', request.object.metadata.name || '') }}"
                 operator: Equals
                 value: true
-              - key: "{{ regex_match('^staging-.*-(redis|memcached)-replica-[a-f0-9]+', request.object.metadata.name || '') }}"
+              - key: "{{ regex_match('^dev-.*(auth|mq).*(blue|green)-[a-f0-9]{8}$', request.object.metadata.name || '') }}"
                 operator: Equals
                 value: true
-              - key: "{{ regex_match('^dev-api-canary-.*', request.object.metadata.name || '') }}"
+              - key: "{{ regex_match('.*-(backup-job-){2,}.*', request.object.metadata.name || '') }}"
                 operator: Equals
                 value: true
-              - key: "{{ regex_match('.*-worker-.*(blue|green)-[a-f0-9]{8}', request.object.metadata.name || '') }}"
+              - key: "{{ regex_match('^qa-.*-(archive|temp)-[a-f0-9]{8}$', request.object.metadata.name || '') }}"
                 operator: Equals
                 value: true
-              - key: "{{ regex_match('^qa-.*-archive-[a-f0-9]{8}', request.object.metadata.name || '') }}"
+              - key: "{{ regex_match('.*-(auth|user)-service-.*-[a-f0-9]{8}$', request.object.metadata.name || '') }}"
                 operator: Equals
                 value: true
-              - key: "{{ regex_match('.*-(auth|user)-service-.*', request.object.metadata.name || '') }}"
-                operator: Equals
-                value: true
-              - key: "{{ regex_match('^prod-mq-.*-main-.*', request.object.metadata.name || '') }}"
+              - key: "{{ regex_match('^prod-mq-.*-main-.*[a-f0-9]{8}$', request.object.metadata.name || '') }}"
                 operator: Equals
                 value: true
               - key: "{{ regex_match('.*storage-(temp|backup)-[a-f0-9]+', request.object.metadata.name || '') }}"
                 operator: Equals
                 value: true
-              - key: "{{ regex_match('^dev-frontend-.*-exp-[a-f0-9]{8}', request.object.metadata.name || '') }}"
+              - key: "{{ regex_match('^dev-frontend-.*-exp-[a-f0-9]{8}$', request.object.metadata.name || '') }}"
                 operator: Equals
                 value: true
               - key: "{{ regex_match('.*-(job|batch)-.*(nightly|weekly)-.*', request.object.metadata.name || '') }}"
@@ -99,3 +101,24 @@ spec:
               - key: "{{ regex_match('.*-media-.*(image|video)-.*', request.object.metadata.name || '') }}"
                 operator: Equals
                 value: true
+              - key: "{{ regex_match('.*-(backup-job-){3,}.*', request.object.metadata.name || '') }}"
+                operator: Equals
+                value: true
+              - key: "{{ regex_match('^prod.*(billing|finance).*batch.*[a-f0-9]{8}$', request.object.metadata.name || '') }}"
+                operator: Equals
+                value: true
+              - key: "{{ regex_match('^dev.*(user|profile).*temp.*[a-f0-9]{8}$', request.object.metadata.name || '') }}"
+                operator: Equals
+                value: true
+              - key: "{{ regex_match('^ci.*(deploy|build).*kustomize.*[a-f0-9]{8}$', request.object.metadata.name || '') }}"
+                operator: Equals
+                value: true
+              - key: "{{ regex_match('^prod.*(gateway|ingress).*(external|internal)-[a-f0-9]{8}$', request.object.metadata.name || '') }}"
+                operator: Equals
+                value: true
+              - key: "{{ regex_match('^staging.*(report|analytics).*nightly.*[a-f0-9]{8}$', request.object.metadata.name || '') }}"
+                operator: Equals
+                value: true
+              - key: "true"
+                operator: Equals
+                value: "false"
