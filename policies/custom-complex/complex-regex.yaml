@@ -22,7 +22,28 @@ spec:
         any:
           - resources:
               kinds:
-                - "*"
+                - Pod
+                - Deployment
+                - ConfigMap
+                - CronJob
+                - Service
+                - Namespace
+                - OCIRepository
+                - Job
+                - StatefulSet
+                - DaemonSet
+                - Ingress
+                - Role
+                - RoleBinding
+                - ClusterRole
+                - ClusterRoleBinding
+                - ClusterSecretStore
+                - ReplicationSource
+                - ReplicationDestination
+                - Provider
+                - GitRepository
+                - PersistentVolumeClaim
+                - NetworkPolicy
       preconditions:
         all:
           - key: "{{ request.object.keys(@) || [] }}"
