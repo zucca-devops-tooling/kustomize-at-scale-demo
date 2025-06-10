@@ -23,6 +23,14 @@ spec:
           - resources:
               kinds:
                 - "*"
+      preconditions:
+        all:
+          - key: "{{ request.object.keys(@) || [] }}"
+            operator: AnyIn
+            value: ["metadata"]
+          - key: "{{ request.object.metadata.keys(@) || [] }}"
+            operator: AnyIn
+            value: ["name"]
       validate:
         message: "Simulating CPU burn via complex regex on metadata.name."
         deny:
