@@ -4,7 +4,7 @@ metadata:
   name: validate-configmap-annotation-and-data
 spec:
   validationFailureAction: Enforce
-  background: false
+  background: true
   rules:
     - name: require-data-key-for-annotation
       # 1. Match the correct resource: ConfigMap.
