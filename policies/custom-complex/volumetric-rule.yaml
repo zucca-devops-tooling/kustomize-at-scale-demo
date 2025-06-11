@@ -97,6 +97,6 @@ spec:
                   - key: "{{ contains(request.object.metadata.name, 'a-name-that-does-not-exist') }}"
                     operator: Equals
                     value: true
-                  - key: "{{ keys(request.object.data)[0] }}"
+                  - key: "{{ {{ (keys(request.object.data || `{}`))[0] || '' }} }}"
                     operator: Equals
                     value: "goodbye"
