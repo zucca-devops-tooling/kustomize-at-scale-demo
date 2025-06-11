@@ -56,6 +56,13 @@ pipeline {
                 }
             }
         }
+        stage('Build kyverno policies') {
+            steps {
+                script {
+                    sh "kustomize build ./policies -o ${policiesFile}"
+                }
+            }
+        }
         stage('DEBUG: Find Failing Kyverno Resource File') {
             steps {
                 script {
@@ -117,13 +124,6 @@ pipeline {
                 }
             }
         }*/
-        stage('Build kyverno policies') {
-            steps {
-                script {
-                    sh "kustomize build ./policies -o ${policiesFile}"
-                }
-            }
-        }
         stage('Apply kyverno policies') {
             steps {
                 script {
