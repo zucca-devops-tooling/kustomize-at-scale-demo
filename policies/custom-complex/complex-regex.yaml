@@ -22,33 +22,18 @@ spec:
         any:
           - resources:
               kinds:
-                - Pod
-                - Deployment
                 - ConfigMap
-                - CronJob
-                - Service
-                - Namespace
-                - OCIRepository
-                - Job
-                - StatefulSet
-                - DaemonSet
-                - Ingress
-                - Role
-                - RoleBinding
-                - ClusterRole
-                - ClusterRoleBinding
-                - ClusterSecretStore
-                - ReplicationSource
-                - ReplicationDestination
-                - Provider
-                - GitRepository
-                - PersistentVolumeClaim
-                - NetworkPolicy
       preconditions:
         all:
           - key: "{{ request.object.keys(@) || [] }}"
             operator: AnyIn
             value: ["metadata"]
+          - key: "{{ request.object.keys(@) || [] }}"
+            operator: AnyIn
+            value: ["data"]
+          - key: "{{ request.object.metadata.keys(@) || [] }}"
+            operator: AnyIn
+            value: ["annotations"]
           - key: "{{ request.object.metadata.keys(@) || [] }}"
             operator: AnyIn
             value: ["name"]
