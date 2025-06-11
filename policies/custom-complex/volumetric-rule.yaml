@@ -15,12 +15,12 @@ spec:
                 - ConfigMap
       preconditions:
         all:
-          - key: "{{ type(request.object.metadata) }}"
-            operator: Equals
-            value: "object"
-          - key: "{{ type(request.object.metadata.annotations) }}"
-            operator: Equals
-            value: "object"
+          - key: "{{ request.object.keys(@) || [] }}"
+            operator: AnyIn
+            value: ["metadata"]
+          - key: "{{ request.object.metadata.keys(@) || [] }}"
+            operator: AnyIn
+            value: ["annotations"]
       validate:
         message: "ConfigMap {{request.object.metadata.name}} is missing required data key for annotation {{element}}."
         # 2. Iterate over all annotation keys. The '|| ``{}``' makes it safe.
