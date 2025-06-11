@@ -74,7 +74,8 @@ pipeline {
         stage('Apply kyverno policies') {
             steps {
                 script {
-                    sh "kyverno apply ${policiesFile} --resource ${builtAppsFolder} --audit-warn > ${kyvernoResults} 2>&1"
+                    sh "kyverno apply ${policiesFile} --resource ${builtAppsFolder} --audit-warn --policy-report --output generated.yaml > ${kyvernoResults} 2>&1"
+                    sh "cat generated.yaml"
                 }
             }
             post {
