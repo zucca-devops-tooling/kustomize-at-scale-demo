@@ -37,8 +37,60 @@ spec:
             deny:
               conditions:
                 any:
+                  # All 20 conditions below are designed to be FALSE
+                  - key: "data-key-{{ split(element, '-')[1] }}"
+                    operator: In
+                    value: "{{ keys(request.object.data || `{}`) }}"
+                  - key: "{{ length(element) }}"
+                    operator: LessThan
+                    value: 10
+                  - key: "{{ length(request.object.metadata.annotations.\"{{element}}\") }}"
+                    operator: LessThan
+                    value: 20
+                  - key: "{{ contains(element, 'stress-test') }}"
+                    operator: Equals
+                    value: false
+                  - key: "{{ contains(request.object.metadata.annotations.\"{{element}}\", 'extra-data') }}"
+                    operator: Equals
+                    value: false
+                  - key: "{{ starts_with(request.object.metadata.annotations.\"{{element}}\", 'value-for-check') }}"
+                    operator: Equals
+                    value: false
+                  - key: "{{ ends_with(request.object.metadata.annotations.\"{{element}}\", 'longer') }}"
+                    operator: Equals
+                    value: true
 
+                  - key: "{{ element }}"
+                    operator: NotEquals
+                    value: "*/key-*"
 
+                  - key: "{{ element }}"
+                    operator: Equals
+                    value: "foo"
+                  - key: "{{ request.object.metadata.annotations.\"{{element}}\" }}"
+                    operator: Equals
+                    value: "bar"
+                  - key: "{{ contains(element, 'will-not-be-found') }}"
+                    operator: Equals
+                    value: true
+                  - key: "{{ contains(request.object.metadata.annotations.\"{{element}}\", 'another-string-that-is-not-present') }}"
+                    operator: Equals
+                    value: true
+                  - key: "{{ length(element) }}"
+                    operator: Equals
+                    value: "1"
+                  - key: "{{ length(request.object.metadata.annotations.\"{{element}}\") }}"
+                    operator: Equals
+                    value: "1"
+                  - key: "{{ request.object.kind }}"
+                    operator: NotEquals
+                    value: "ConfigMap"
+                  - key: "{{ request.object.apiVersion }}"
+                    operator: NotEquals
+                    value: "v1"
+                  - key: "{{ split(element, '-')[0] }}"
+                    operator: Equals
+                    value: "stress-test.com"
                   - key: "{{ element }}"
                     operator: LessThan
                     value: "a"
