@@ -1,0 +1,47 @@
+# This policy is designed to be CPU-BOUND for performance testing.
+# It runs a complex regex against a field that is guaranteed to exist on every resource.
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: cpu-burn-via-name
+  annotations:
+    policies.kyverno.io/title: CPU Burn
+    policies.kyverno.io/category: Complex
+    policies.kyverno.io/severity: medium
+    kyverno.io/kyverno-version: 1.6.0
+    policies.kyverno.io/minversion: 1.6.0
+    kyverno.io/kubernetes-version: "1.23"
+    policies.kyverno.io/subject: Pod, Name
+    policies.kyverno.io/description: Expensive rule
+spec:
+  validationFailureAction: Audit
+  background: true
+  rules:
+    - name: cpu-burn-name
+      match:
+        any:
+          - resources:
+              kinds:
+                - ConfigMap
+      preconditions:
+        all:
+          - key: "{{ request.object.keys(@) || [] }}"
+            operator: AnyIn
+            value: ["metadata"]
+          - key: "{{ request.object.keys(@) || [] }}"
+            operator: AnyIn
+            value: ["data"]
+          - key: "{{ request.object.metadata.keys(@) || [] }}"
+            operator: AnyIn
+            value: ["annotations"]
+          - key: "{{ request.object.metadata.keys(@) || [] }}"
+            operator: AnyIn
+            value: ["name"]
+      validate:
+        message: "Simulating CPU burn via complex regex on metadata.name."
+        deny:
+          conditions:
+            all:
+              - key: "{{ regex_match('^([a-z0-9](-?[a-z0-9])*.?)+$', request.object.metadata.name || '') }}"
+                operator: Equals
+                value: false

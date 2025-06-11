@@ -1,0 +1,33 @@
+# This policy is designed to be I/O-BOUND for performance testing.
+# It makes an external API call for every resource it processes.
+
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: force-io-per-resource-alpha
+  annotations:
+    policies.kyverno.io/title: Force I/O Wait Per Resource
+    policies.kyverno.io/category: Benchmarking
+    policies.kyverno.io/subject: All Resources
+    policies.kyverno.io/description: >-
+      This is a benchmarking tool. It forces network latency by making an
+      external API call for every resource, allowing for clear measurement
+      of I/O-bound policy performance.
+spec:
+  validationFailureAction: Audit
+  background: true
+  rules:
+    - name: call-external-api-per-resource
+      context:
+        - name: externalApiData
+          apiCall:
+            urlPath: "https://catfact.ninja/fact"
+            jmesPath: "fact"
+
+      validate:
+        message: "Forcing I/O wait for resource."
+        # This pattern simply checks that the data from the API call exists.
+        # It does not access any fields on the resource, making it robust.
+        pattern:
+          context:
+            externalApiData: "?*"
