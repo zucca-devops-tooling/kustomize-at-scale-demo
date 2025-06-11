@@ -38,22 +38,13 @@ spec:
               conditions:
                 any:
 
-                  - key: "{{ element }}"
-                    operator: NotEquals
-                    value: "*/key-*"
 
                   - key: "{{ element }}"
-                    operator: Equals
-                    value: "foo"
-                  - key: "{{ request.object.metadata.annotations.\"{{element}}\" }}"
-                    operator: Equals
-                    value: "bar"
-                  - key: "{{ contains(element, 'will-not-be-found') }}"
+                    operator: LessThan
+                    value: "a"
+                  - key: "{{ contains(request.object.metadata.name, 'a-name-that-does-not-exist') }}"
                     operator: Equals
                     value: true
-                  - key: "{{ contains(request.object.metadata.annotations.\"{{element}}\", 'another-string-that-is-not-present') }}"
+                  - key: "{{ {{ (keys(request.object.data || `{}`))[0] || '' }} }}"
                     operator: Equals
-                    value: true
-                  - key: "{{ length(element) }}"
-                    operator: Equals
-                    value: "1"
+                    value: "goodbye"
