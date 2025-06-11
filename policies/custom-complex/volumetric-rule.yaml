@@ -15,6 +15,9 @@ spec:
                 - ConfigMap
       preconditions:
         all:
+          - key: "{{ type(request.object.metadata) }}"
+            operator: Equals
+            value: "object"
           - key: "{{ type(request.object.metadata.annotations) }}"
             operator: Equals
             value: "object"
