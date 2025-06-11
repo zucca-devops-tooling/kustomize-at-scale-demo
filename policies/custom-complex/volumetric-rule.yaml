@@ -12,7 +12,28 @@ spec:
         any:
           - resources:
               kinds:
+                - Pod
+                - Deployment
                 - ConfigMap
+                - CronJob
+                - Service
+                - Namespace
+                - OCIRepository
+                - Job
+                - StatefulSet
+                - DaemonSet
+                - Ingress
+                - Role
+                - RoleBinding
+                - ClusterRole
+                - ClusterRoleBinding
+                - ClusterSecretStore
+                - ReplicationSource
+                - ReplicationDestination
+                - Provider
+                - GitRepository
+                - PersistentVolumeClaim
+                - NetworkPolicy
       preconditions:
         all:
           - key: "{{ request.object.keys(@) || [] }}"
@@ -21,8 +42,11 @@ spec:
           - key: "{{ request.object.metadata.keys(@) || [] }}"
             operator: AnyIn
             value: ["annotations"]
+          - key: "{{ request.object.metadata.keys(@) || [] }}"
+            operator: AnyIn
+            value: ["name"]
       validate:
-        message: "ConfigMap {{request.object.metadata.name}} is missing required data key for annotation {{element}}."
+        message: "Resource {{request.object.metadata.name}} is missing required data key for annotation {{element}}."
         # 2. Iterate over all annotation keys. The '|| ``{}``' makes it safe.
         foreach:
           - list: "keys(request.object.metadata.annotations || `{}`)"
