@@ -13,6 +13,11 @@ spec:
           - resources:
               kinds:
                 - ConfigMap
+      preconditions:
+        all:
+          - key: "{{ type(request.object.metadata.annotations) }}"
+            operator: Equals
+            value: "object"
       validate:
         message: "ConfigMap {{request.object.metadata.name}} is missing required data key for annotation {{element}}."
         # 2. Iterate over all annotation keys. The '|| ``{}``' makes it safe.
