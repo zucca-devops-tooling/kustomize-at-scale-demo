@@ -74,8 +74,8 @@ pipeline {
         stage('Apply kyverno policies') {
             steps {
                 script {
-                    sh "kyverno apply ${policiesFile} --resource ${builtAppsFolder} --audit-warn --policy-report --output generated.yaml > ${kyvernoResults} 2>&1"
-                    sh "cat generated.yaml"
+                    sh "mkdir generated"
+                    sh "kyverno apply ${policiesFile} --resource ${builtAppsFolder} --audit-warn --policy-report --output generated > ${kyvernoResults} 2>&1"
                 }
             }
             post {
@@ -84,6 +84,7 @@ pipeline {
                         if (fileExists(kyvernoResults)) {
                             archiveArtifacts artifacts: "${kyvernoResults}"
                         }
+                        sh "ls generated"
                     }
                 }
             }
