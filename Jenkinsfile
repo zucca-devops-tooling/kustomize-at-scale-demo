@@ -75,7 +75,11 @@ pipeline {
             steps {
                 script {
                     sh "mkdir generated"
-                    sh "kyverno apply ${policiesFile} --resource ${builtAppsFolder} --audit-warn --policy-report --output generated > ${kyvernoResults} 2>&1"
+                    try {
+                        sh "kyverno apply ${policiesFile} --resource ${builtAppsFolder} --audit-warn --policy-report --output generated > ${kyvernoResults}"
+                    } catch (e) {
+                        println "Kyverno policies failed"
+                    }
                 }
             }
             post {

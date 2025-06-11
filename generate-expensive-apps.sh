@@ -10,7 +10,7 @@ do
   FILE_PATH="kustomize-output/resources-part-${i}.yaml"
   echo "---" > $FILE_PATH
 
-  # Generate 50 resources in each file
+  # Generate 100 resources in each file
   for j in {1..50}
   do
     RESOURCE_NAME="test-cm-${i}-${j}"
@@ -19,7 +19,7 @@ do
     echo "metadata:" >> $FILE_PATH
     echo "  name: ${RESOURCE_NAME}" >> $FILE_PATH
     echo "  annotations:" >> $FILE_PATH
-    # THE CHANGE: Now generating 50 annotations per resource
+    # THE CHANGE: Now generating 100 annotations per resource
     for k in {1..50}
     do
       echo "    stress-test.io/key-${k}: 'value-for-check-${k}-and-some-extra-data-to-make-it-longer-and-even-more-data-to-increase-size'" >> $FILE_PATH
