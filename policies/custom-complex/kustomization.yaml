@@ -6,4 +6,3 @@ resources:
   - disallow-duplicate-ingress-host.yaml
   - generate-allow-same-group.yaml
   - validate-sa-annotation.yaml
-  - volumetric-rule.yaml
