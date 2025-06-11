@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: staging-cache-archive-990fcbfa
-data:
-  app: "app-41"
-  resource: "resource-22"

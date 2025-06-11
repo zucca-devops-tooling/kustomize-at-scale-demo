@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prod-storage-replica-f5b92c8c
-data:
-  app: "app-20"
-  resource: "resource-15"

@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dev-frontend-backup-4093a8e3
-data:
-  app: "app-49"
-  resource: "resource-4"

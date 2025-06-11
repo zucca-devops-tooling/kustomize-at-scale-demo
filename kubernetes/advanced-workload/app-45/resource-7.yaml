@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qa-database-replica-24535cbe
-data:
-  app: "app-45"
-  resource: "resource-7"

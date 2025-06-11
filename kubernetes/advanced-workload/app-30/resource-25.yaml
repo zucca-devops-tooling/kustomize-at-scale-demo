@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dev-storage-main-70b0fae7
-data:
-  app: "app-30"
-  resource: "resource-25"

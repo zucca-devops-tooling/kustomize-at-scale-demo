@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prod-storage-green-001ad71e
-data:
-  app: "app-50"
-  resource: "resource-7"

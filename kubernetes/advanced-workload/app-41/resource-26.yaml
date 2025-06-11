@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dev-api-backup-624ae94e
-data:
-  app: "app-41"
-  resource: "resource-26"

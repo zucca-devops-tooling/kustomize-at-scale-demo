@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qa-database-temp-64742a7b
-data:
-  app: "app-1"
-  resource: "resource-2"

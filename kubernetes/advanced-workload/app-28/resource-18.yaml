@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prod-worker-archive-39471b4b
-data:
-  app: "app-28"
-  resource: "resource-18"

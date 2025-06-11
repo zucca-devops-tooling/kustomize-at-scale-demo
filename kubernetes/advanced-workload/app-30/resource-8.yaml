@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: staging-storage-canary-823747c5
-data:
-  app: "app-30"
-  resource: "resource-8"

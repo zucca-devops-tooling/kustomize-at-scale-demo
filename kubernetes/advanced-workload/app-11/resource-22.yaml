@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dev-database-replica-5c2fca52
-data:
-  app: "app-11"
-  resource: "resource-22"

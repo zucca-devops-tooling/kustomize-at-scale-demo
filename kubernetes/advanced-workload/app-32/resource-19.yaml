@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dev-api-replica-1edea8dc
-data:
-  app: "app-32"
-  resource: "resource-19"

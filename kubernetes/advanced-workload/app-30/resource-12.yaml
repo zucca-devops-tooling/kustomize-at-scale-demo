@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prod-database-backup-58522a5f
-data:
-  app: "app-30"
-  resource: "resource-12"

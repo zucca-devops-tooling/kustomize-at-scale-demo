@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prod-worker-green-63370c37
-data:
-  app: "app-29"
-  resource: "resource-8"

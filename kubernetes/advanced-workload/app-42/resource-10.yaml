@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qa-backup-job-backup-job-backup-job-backup-job-0fdd9135
-data:
-  app: "app-42"
-  resource: "resource-10"

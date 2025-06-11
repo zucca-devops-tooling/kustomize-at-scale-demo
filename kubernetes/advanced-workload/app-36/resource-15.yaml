@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qa-storage-canary-65a0cf7e
-data:
-  app: "app-36"
-  resource: "resource-15"

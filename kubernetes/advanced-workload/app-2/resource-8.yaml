@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qa-worker-blue-e51826f6
-data:
-  app: "app-2"
-  resource: "resource-8"

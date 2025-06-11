@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prod-api-canary-ff26db8e
-data:
-  app: "app-35"
-  resource: "resource-22"

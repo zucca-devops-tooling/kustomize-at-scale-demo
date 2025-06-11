@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qa-mq-temp-c45b2055
-data:
-  app: "app-8"
-  resource: "resource-6"

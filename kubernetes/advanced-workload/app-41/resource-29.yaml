@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prod-database-main-efac5317
-data:
-  app: "app-41"
-  resource: "resource-29"

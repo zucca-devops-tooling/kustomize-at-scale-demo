@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prod-mq-canary-461b41ef
-data:
-  app: "app-23"
-  resource: "resource-25"

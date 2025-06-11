@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: staging-mq-blue-a7e3deab
-data:
-  app: "app-46"
-  resource: "resource-8"

@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dev-worker-archive-bb655eed
-data:
-  app: "app-28"
-  resource: "resource-12"

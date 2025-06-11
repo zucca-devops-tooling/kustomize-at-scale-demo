@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prod-auth-backup-3161921d
-data:
-  app: "app-21"
-  resource: "resource-12"

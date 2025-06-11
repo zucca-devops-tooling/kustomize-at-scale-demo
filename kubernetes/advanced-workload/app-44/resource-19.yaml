@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qa-api-blue-3b9721db
-data:
-  app: "app-44"
-  resource: "resource-19"

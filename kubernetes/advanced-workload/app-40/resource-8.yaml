@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qa-frontend-canary-b37eed26
-data:
-  app: "app-40"
-  resource: "resource-8"

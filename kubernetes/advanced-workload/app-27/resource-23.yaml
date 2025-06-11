@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qa-mq-blue-124bec3e
-data:
-  app: "app-27"
-  resource: "resource-23"

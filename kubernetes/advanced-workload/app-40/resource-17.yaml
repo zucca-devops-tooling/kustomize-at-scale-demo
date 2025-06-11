@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dev-cache-canary-84094d2b
-data:
-  app: "app-40"
-  resource: "resource-17"

@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prod-worker-temp-078bd418
-data:
-  app: "app-19"
-  resource: "resource-21"

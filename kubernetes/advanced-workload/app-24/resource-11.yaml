@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qa-worker-replica-60f3051b
-data:
-  app: "app-24"
-  resource: "resource-11"

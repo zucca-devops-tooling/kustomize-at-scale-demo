@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prod-worker-main-b102fcdd
-data:
-  app: "app-49"
-  resource: "resource-3"

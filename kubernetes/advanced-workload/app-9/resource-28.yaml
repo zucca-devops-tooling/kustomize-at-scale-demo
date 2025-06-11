@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dev-frontend-canary-cad68b28
-data:
-  app: "app-9"
-  resource: "resource-28"

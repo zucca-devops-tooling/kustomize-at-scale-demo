@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qa-mq-backup-44afda7a
-data:
-  app: "app-7"
-  resource: "resource-14"

@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dev-api-blue-e24807dc
-data:
-  app: "app-42"
-  resource: "resource-15"

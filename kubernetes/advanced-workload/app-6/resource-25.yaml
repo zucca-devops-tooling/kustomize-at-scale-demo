@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prod-mq-archive-dd60e701
-data:
-  app: "app-6"
-  resource: "resource-25"

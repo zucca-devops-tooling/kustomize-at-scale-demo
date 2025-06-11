@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: staging-worker-main-49e385df
-data:
-  app: "app-9"
-  resource: "resource-13"

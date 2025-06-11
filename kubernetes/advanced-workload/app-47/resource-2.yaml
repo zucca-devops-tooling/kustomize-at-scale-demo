@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qa-mq-archive-e16da042
-data:
-  app: "app-47"
-  resource: "resource-2"

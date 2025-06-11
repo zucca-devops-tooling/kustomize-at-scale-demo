@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prod-frontend-main-1e2b398b
-data:
-  app: "app-36"
-  resource: "resource-25"

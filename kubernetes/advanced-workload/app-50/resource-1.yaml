@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dev-worker-canary-d1fe484f
-data:
-  app: "app-50"
-  resource: "resource-1"

@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: staging-frontend-canary-01826787
-data:
-  app: "app-40"
-  resource: "resource-7"

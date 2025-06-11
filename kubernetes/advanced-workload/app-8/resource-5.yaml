@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prod-mq-archive-c1132df7
-data:
-  app: "app-8"
-  resource: "resource-5"

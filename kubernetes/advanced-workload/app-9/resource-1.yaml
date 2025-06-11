@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dev-storage-blue-ecbcd312
-data:
-  app: "app-9"
-  resource: "resource-1"

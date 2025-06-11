@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qa-cache-blue-3f88016f
-data:
-  app: "app-4"
-  resource: "resource-5"

@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: staging-mq-backup-f2a34298
-data:
-  app: "app-17"
-  resource: "resource-23"

@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: staging-api-temp-89f2b930
-data:
-  app: "app-24"
-  resource: "resource-17"

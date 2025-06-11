@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qa-storage-replica-aa7632df
-data:
-  app: "app-33"
-  resource: "resource-17"

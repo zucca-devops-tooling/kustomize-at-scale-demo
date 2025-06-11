@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dev-auth-canary-38a8bd14
-data:
-  app: "app-13"
-  resource: "resource-28"

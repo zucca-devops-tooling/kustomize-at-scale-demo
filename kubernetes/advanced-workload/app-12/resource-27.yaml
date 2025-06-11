@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qa-cache-canary-98d525be
-data:
-  app: "app-12"
-  resource: "resource-27"

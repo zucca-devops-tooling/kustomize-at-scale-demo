@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qa-api-backup-953d813d
-data:
-  app: "app-48"
-  resource: "resource-8"

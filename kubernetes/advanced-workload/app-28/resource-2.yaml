@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qa-storage-archive-aac1d5f0
-data:
-  app: "app-28"
-  resource: "resource-2"

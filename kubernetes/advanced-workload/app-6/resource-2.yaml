@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qa-auth-canary-22b7ce66
-data:
-  app: "app-6"
-  resource: "resource-2"

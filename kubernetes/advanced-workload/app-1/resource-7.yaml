@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prod-cache-archive-087f4129
-data:
-  app: "app-1"
-  resource: "resource-7"

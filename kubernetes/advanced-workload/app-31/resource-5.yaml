@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dev-auth-archive-7f5c5461
-data:
-  app: "app-31"
-  resource: "resource-5"

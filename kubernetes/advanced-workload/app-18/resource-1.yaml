@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prod-mq-blue-2ce10aee
-data:
-  app: "app-18"
-  resource: "resource-1"

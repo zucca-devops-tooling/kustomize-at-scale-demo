@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: staging-auth-replica-3560ca4c
-data:
-  app: "app-28"
-  resource: "resource-9"

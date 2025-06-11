@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qa-cache-green-d887e3e8
-data:
-  app: "app-43"
-  resource: "resource-3"

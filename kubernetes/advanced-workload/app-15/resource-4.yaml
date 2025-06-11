@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dev-frontend-canary-fef5129a
-data:
-  app: "app-15"
-  resource: "resource-4"

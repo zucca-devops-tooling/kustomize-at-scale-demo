@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: staging-frontend-main-c0f9960b
-data:
-  app: "app-4"
-  resource: "resource-26"

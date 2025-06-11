@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: staging-api-backup-92c48b09
-data:
-  app: "app-16"
-  resource: "resource-14"

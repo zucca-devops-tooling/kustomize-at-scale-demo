@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: staging-cache-canary-06f35354
-data:
-  app: "app-36"
-  resource: "resource-13"

@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dev-mq-green-d931fb5a
-data:
-  app: "app-12"
-  resource: "resource-15"

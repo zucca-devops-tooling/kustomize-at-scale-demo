@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dev-auth-main-70d48134
-data:
-  app: "app-34"
-  resource: "resource-13"

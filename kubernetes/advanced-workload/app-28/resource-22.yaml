@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dev-mq-backup-9643b7d6
-data:
-  app: "app-28"
-  resource: "resource-22"

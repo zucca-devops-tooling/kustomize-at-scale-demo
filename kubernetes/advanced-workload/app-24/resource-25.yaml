@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qa-database-green-77437fea
-data:
-  app: "app-24"
-  resource: "resource-25"

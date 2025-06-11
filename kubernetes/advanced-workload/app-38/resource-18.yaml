@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prod-mq-green-cd36a97f
-data:
-  app: "app-38"
-  resource: "resource-18"

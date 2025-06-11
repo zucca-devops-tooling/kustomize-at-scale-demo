@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dev-mq-main-8d7c98ce
-data:
-  app: "app-9"
-  resource: "resource-27"

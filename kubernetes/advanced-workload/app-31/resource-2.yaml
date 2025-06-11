@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dev-storage-temp-c920115d
-data:
-  app: "app-31"
-  resource: "resource-2"

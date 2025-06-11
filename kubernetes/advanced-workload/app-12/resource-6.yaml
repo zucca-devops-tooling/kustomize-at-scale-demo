@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: staging-api-replica-e298fc2d
-data:
-  app: "app-12"
-  resource: "resource-6"

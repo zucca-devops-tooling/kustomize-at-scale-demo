@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prod-auth-main-b339d89e
-data:
-  app: "app-30"
-  resource: "resource-15"

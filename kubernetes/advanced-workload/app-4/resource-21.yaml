@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: staging-worker-temp-bfe01759
-data:
-  app: "app-4"
-  resource: "resource-21"

@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dev-mq-temp-fc2a3f6e
-data:
-  app: "app-18"
-  resource: "resource-16"

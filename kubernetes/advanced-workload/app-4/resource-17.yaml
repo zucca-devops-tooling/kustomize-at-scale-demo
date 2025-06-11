@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dev-api-main-47306183
-data:
-  app: "app-4"
-  resource: "resource-17"

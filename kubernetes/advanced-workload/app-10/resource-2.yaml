@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qa-auth-backup-9b2c5912
-data:
-  app: "app-10"
-  resource: "resource-2"

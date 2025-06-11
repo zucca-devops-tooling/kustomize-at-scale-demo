@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prod-auth-green-ce205de2
-data:
-  app: "app-27"
-  resource: "resource-27"

@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qa-storage-main-f6ba8ece
-data:
-  app: "app-29"
-  resource: "resource-13"

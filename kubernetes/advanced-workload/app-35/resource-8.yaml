@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: staging-database-canary-60843035
-data:
-  app: "app-35"
-  resource: "resource-8"

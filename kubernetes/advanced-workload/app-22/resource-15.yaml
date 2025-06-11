@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prod-api-archive-0b880ade
-data:
-  app: "app-22"
-  resource: "resource-15"

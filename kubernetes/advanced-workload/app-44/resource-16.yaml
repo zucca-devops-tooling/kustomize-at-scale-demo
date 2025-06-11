@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dev-database-blue-54bea53b
-data:
-  app: "app-44"
-  resource: "resource-16"

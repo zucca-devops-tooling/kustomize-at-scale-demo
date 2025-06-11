@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: staging-auth-canary-a2210db2
-data:
-  app: "app-1"
-  resource: "resource-12"

@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qa-mq-blue-677c3e8d
-data:
-  app: "app-16"
-  resource: "resource-1"

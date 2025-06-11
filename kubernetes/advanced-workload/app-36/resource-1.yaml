@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prod-auth-backup-f2eafe50
-data:
-  app: "app-36"
-  resource: "resource-1"

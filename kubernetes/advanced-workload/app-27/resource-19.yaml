@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qa-worker-canary-91beb77e
-data:
-  app: "app-27"
-  resource: "resource-19"

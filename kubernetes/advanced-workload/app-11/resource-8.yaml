@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dev-auth-backup-ff334afb
-data:
-  app: "app-11"
-  resource: "resource-8"

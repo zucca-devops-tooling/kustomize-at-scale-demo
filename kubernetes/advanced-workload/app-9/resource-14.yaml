@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qa-frontend-main-29b8c22a
-data:
-  app: "app-9"
-  resource: "resource-14"

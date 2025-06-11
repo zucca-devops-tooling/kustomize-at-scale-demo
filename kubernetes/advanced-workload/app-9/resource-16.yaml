@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dev-api-canary-af286aad
-data:
-  app: "app-9"
-  resource: "resource-16"

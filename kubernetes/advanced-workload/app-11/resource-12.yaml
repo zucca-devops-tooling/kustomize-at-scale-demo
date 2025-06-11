@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: staging-storage-main-90e0a46c
-data:
-  app: "app-11"
-  resource: "resource-12"

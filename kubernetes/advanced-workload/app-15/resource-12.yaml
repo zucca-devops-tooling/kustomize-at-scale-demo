@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prod-cache-temp-ef069955
-data:
-  app: "app-15"
-  resource: "resource-12"

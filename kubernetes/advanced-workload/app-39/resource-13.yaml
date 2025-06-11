@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prod-auth-temp-a6abd26e
-data:
-  app: "app-39"
-  resource: "resource-13"

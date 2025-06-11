@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qa-auth-replica-dff8e4fc
-data:
-  app: "app-33"
-  resource: "resource-23"

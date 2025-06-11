@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prod-frontend-canary-98aed526
-data:
-  app: "app-12"
-  resource: "resource-3"

@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dev-frontend-blue-6f6bb97f
-data:
-  app: "app-1"
-  resource: "resource-29"

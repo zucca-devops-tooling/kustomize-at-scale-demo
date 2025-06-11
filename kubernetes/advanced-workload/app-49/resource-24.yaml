@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prod-cache-green-2cf95bfc
-data:
-  app: "app-49"
-  resource: "resource-24"

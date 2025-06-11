@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: staging-frontend-replica-0a5b7675
-data:
-  app: "app-44"
-  resource: "resource-29"

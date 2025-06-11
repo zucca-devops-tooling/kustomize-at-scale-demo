@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: staging-frontend-green-53538cea
-data:
-  app: "app-8"
-  resource: "resource-8"

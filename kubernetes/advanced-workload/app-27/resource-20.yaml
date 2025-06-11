@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dev-backup-job-backup-job-backup-job-backup-job-bafc140d
-data:
-  app: "app-27"
-  resource: "resource-20"

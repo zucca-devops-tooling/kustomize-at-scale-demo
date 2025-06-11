@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qa-api-canary-c8630ffb
-data:
-  app: "app-50"
-  resource: "resource-5"

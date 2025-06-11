@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: staging-storage-green-c52e649c
-data:
-  app: "app-20"
-  resource: "resource-26"

@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prod-mq-backup-cd8fb07c
-data:
-  app: "app-20"
-  resource: "resource-21"
