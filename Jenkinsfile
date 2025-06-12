@@ -95,18 +95,18 @@ pipeline {
                     }
                 }
             }
-        }
-    }*/
-    stage('Parallel Apply') {
-        steps {
-            script {
-                sh "mkdir generated"
-                kyvernoParallelApply([
-                    'generatedResourcesDir': 'generated',
-                    'manifestSourceDirectory': builtAppsFolder,
-                    'finalReportPath': kyvernoResults,
-                    'policyPath': policiesFile
-                ])
+        }*/
+        stage('Parallel Apply') {
+            steps {
+                script {
+                    sh "mkdir generated"
+                    kyvernoParallelApply([
+                        'generatedResourcesDir': 'generated',
+                        'manifestSourceDirectory': builtAppsFolder,
+                        'finalReportPath': kyvernoResults,
+                        'policyPath': policiesFile
+                    ])
+                }
             }
         }
     }
