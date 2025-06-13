@@ -11,7 +11,7 @@ do
   echo "---" > $FILE_PATH
 
   # Generate 100 resources in each file
-  for j in {1..50}
+  for j in {1..100}
   do
     RESOURCE_NAME="test-cm-${i}-${j}"
     echo "apiVersion: v1" >> $FILE_PATH
@@ -20,7 +20,7 @@ do
     echo "  name: ${RESOURCE_NAME}" >> $FILE_PATH
     echo "  annotations:" >> $FILE_PATH
     # THE CHANGE: Now generating 100 annotations per resource
-    for k in {1..50}
+    for k in {1..100}
     do
       echo "    stress-test.io/key-${k}: 'value-for-check-${k}-and-some-extra-data-to-make-it-longer-and-even-more-data-to-increase-size'" >> $FILE_PATH
     done
