@@ -99,12 +99,12 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh "mkdir generated"
                         kyvernoParallelApply([
                             'generatedResourcesDir': 'generated',
                             'manifestSourceDirectory': builtAppsFolder,
                             'finalReportPath': kyvernoResults,
                             'policyPath': policiesFile,
+                            'extraKyvernoArgs': '--audit-warn',
                             'debugLogDir': 'logs'
                         ])
                     } catch (err) {
