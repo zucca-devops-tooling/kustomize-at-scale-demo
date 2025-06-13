@@ -1,4 +1,4 @@
-@Library('kyverno-parallel-apply@test/integration') _
+@Library('kyverno-parallel-apply') _
 
 def cliVersion = "1.0.1"
 def cliFile = "kustomtrace-cli-${cliVersion}-all.jar"
