@@ -87,7 +87,6 @@ pipeline {
             post {
                 always {
                     script {
-                        sh "mkdir generated"
                         if (fileExists(kyvernoResults)) {
                             archiveArtifacts artifacts: "${kyvernoResults}"
                         }
