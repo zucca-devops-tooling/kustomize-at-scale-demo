@@ -105,7 +105,7 @@ pipeline {
                             'generatedResourcesDir': 'generated',
                             'manifestSourceDirectory': builtAppsFolder,
                             'finalReportPath': kyvernoResults,
-                            'policyPath': policiesFile
+                            'policyPath': policiesFile,
                             'extraKyvernoArgs': '--audit-log',
                             'debugLogDir': 'logs'
                         ])
