@@ -1,73 +1,106 @@
-# Operate-First Apps
+# Kustomize and Kyverno at Scale: A CI/CD Demonstration
 
-This repository serves as a centralized source of truth for the Operate First Community Cloud Offering.
+This repository serves as a real-world demonstration for a suite of tools designed to solve the performance and complexity challenges of managing large-scale Kubernetes GitOps repositories. It showcases the combined power of [**kustom-trace**](https://github.com/zucca-devops-tooling/kustom-trace) and [**kyverno-parallel-apply**](https://github.com/zucca-devops-tooling/kyverno-parallel-apply) to create fast, intelligent, and reliable CI/CD pipelines.
 
-In this repository you will find various OCP/K8s manifests that define the desired state of all our clusters and different
-services deployed on these clusters.
+The application set used for this demo is derived from several excellent, complex, real-world repositories, including:
 
-All manifests can be generated using [kustomize][kustomize]. Though some builds may include encrypted data that require
-additional credentials (read more about how we encrypt files [here][encryption_docs]).
+* [onedr0p/home-ops](https://github.com/onedr0p/home-ops)
+* [operate-first/apps](https://github.com/operate-first/apps)
+* [A custom-generated](https://github.com/zucca-devops-tooling/kustomize-at-scale-demo/blob/main/generate-expensive-apps.sh) workload of over 1500 resources designed to simulate an expensive policy evaluation environment.
 
-All manifests found through this repo are deployed by our [ArgoCD][argocd_instance].
+---
 
-## Documentation
+## The Problem: CI/CD Bottlenecks in Complex GitOps Repos
 
-All documentation can be found [here][docs].
+As GitOps repositories grow to manage hundreds or thousands of applications, standard CI/CD processes face significant challenges that lead to slow, unreliable, and inefficient builds.
 
-## What is an "App"?
+1.  **Identifying Build Targets:** In a complex repository with many applications reusing shared components, simply identifying which applications to build with `kustomize build` becomes a challenge. The common approach of maintaining a manually curated list of "root" applications (e.g., in a central `kustomization.yaml` or a script) is brittle, error-prone, and adds maintenance overhead.
 
-_Apps_ or _Applications_ in this context refers to the ArgoCD notion of `Application`, as described in the
-[ArgoCD docs][argocd_core_concepts]. In short, you can think of an `App` as a collection of manifests that have a
-destination cluster where they should be deployed.
+2.  **Expensive Policy Enforcement:** Applying security and best-practice policies with tools like Kyverno is critical, but it can be extremely slow. In this demo repository, applying a full set of policies against all 2500+ generated resources takes **8 minutes and 22 seconds** in a single thread. In large enterprise environments, this can scale to hours, making it an unacceptable bottleneck.
 
-## How does it work?
+3.  **Inefficient Pull Request Validation:** The lack of a reliable way to identify which applications are truly affected by a PR leads to poor choices, each with a significant disadvantage:
+    * **a) Build Everything:** Running `kustomize build` and `kyverno apply` on all applications for every PR is safe but leads to extremely slow and expensive CI pipelines.
+    * **b) Build Nothing:** Skipping validation on PRs makes the pipeline fast but provides zero feedback to developers, shifting the burden of finding errors to the post-merge build.
+    * **c) Use Heuristics:** Relying on simple path-based logic (e.g., "only build apps in directories that have changed files") is unreliable and dangerous. It often fails to detect changes in shared components or bases, creating a significant risk of not building and testing all truly affected applications.
 
-![](./docs/img/apps_repo.png)
+## The Solution: Intelligent Tooling
 
-This diagram provides a simple illustration of the structure of a typical `Application` in this repo. In this
-illustration you can imagine an `Application` to be any group of manifests. These manifests belonging to an
-`Application` often make up a full deployment of a service which has end users (e.g. `Grafana`). Though sometimes,
-an `Application` may be just be a way to logically group a collection of manifests, like in the case of `cluster-scope`
-`Application` which harbors all cluster wide resources, configurations, and privileged resources.
+This demo showcases a two-part solution that directly addresses these problems.
 
-Once a group of manifests are organized into a directory, they can be deployed using ArgoCD. To do this you simply
-need to create the application within ArgoCD, docs on how to do this can be found [here][argocd_add_app].
+### 1. `kustom-trace`: For Reliable Application Discovery
 
-## Repo structure
+[kustom-trace](https://github.com/zucca-devops-tooling/kustom-trace) is a command-line tool that analyzes the dependency graph of a Kustomize repository to provide precise answers about its structure.
 
-You will also notice each app adheres to a structure made up of `bases` and `overlays`. This is a structure commonly
-found when using `Kustomize`. `base` directories contain manifests/configurations that are common to multiple clusters
-and generally don't harbor any cluster specific details. Within the `overlays` directory you'll find cluster specific
-configurations. A cluster specific folder within `Overlays` will inherit the manifests from `base` folders as needed,
-while also making patches/amendments specific to that cluster.
+* `list-root-apps`: This function scans the entire repository and reliably identifies all the "root" applications that can be built, solving Problem #1 without any manual lists.
+* `affected-apps`: This function takes a list of changed files from a pull request and accurately determines the exact set of root applications impacted by those changes, solving Problem #3.
 
-## Contributing
+### 2. `kyverno-parallel-apply`: For High-Performance Policy Enforcement
 
-We suggest ramping up on the following before attempting to work with the [Apps repo][apps_repo]:
+[kyverno-parallel-apply](https://github.com/zucca-devops-tooling/kyverno-parallel-apply) is a Jenkins Shared Library that fixes Problem #2. It takes a large set of manifests and automatically shards them into smaller batches, running `kyverno apply` on each batch in a parallel Jenkins stage. This takes full advantage of the multiple CPU cores available on Jenkins nodes, dramatically reducing the overall execution time.
 
-- [Openshift/K8s][learn_ocp]
-- [Kustomize][kustomize]
-- [ArgoCD][argocd_core_concepts]
-- [SOPS][sops] (if working with encrypted manifests)
+## The Impact: A Fast and Reliable CI Workflow
 
-We encourage you to browse around the following repos for issues you would be interested in tackling:
+By combining these two tools, we can create a CI pipeline that is both fast and reliable. The `Jenkinsfile` in this repository demonstrates the complete workflow.
 
-- https://github.com/operate-first/apps
-- https://github.com/operate-first/support
+### 1. Simple and Reliable Application Building
 
-Beginner friendly issues are marked ["Good first issue"][good_first_issue]. Though you are welcome to take on any issue
-that interests you. If an issue is unclear or requires more information, feel free to reach out to us.
+First, we get a reliable list of which applications to build.
 
-Please be sure to read the contributing docs [here][contributing] before making a PR.
+**For a full build (e.g., on the `main` branch):**
 
-[apps_repo]: https://github.com/operate-first/apps
-[docs]: https://www.operate-first.cloud/apps/content/README.html
-[kustomize]: https://kustomize.io/
-[encryption_docs]: https://www.operate-first.cloud/apps/content/argocd-gitops/encrypting_applications.html
-[argocd_instance]: https://argocd.operate-first.cloud/applications
-[argocd_core_concepts]: https://argo-cd.readthedocs.io/en/stable/core_concepts/
-[contributing]: https://github.com/operate-first/apps/blob/master/contributing.md
-[learn_ocp]: https://developers.redhat.com/learn
-[sops]: https://github.com/mozilla/sops
-[argocd_add_app]: https://www.operate-first.cloud/apps/content/argocd-gitops/add_application.html
-[good_first_issue]: https://github.com/search?q=org%3Aoperate-first+label%3A%22good+first+issue%22+is%3Aopen&type=issues
+```bash
+# Get the list of all applications
+java -jar kustomtrace.jar -a ./kubernetes -o app-list.yaml list-root-apps
+```
+
+**For a partial build (on a Pull Request):**
+
+```bash
+# Get the list of changed files from Git
+# (The Jenkinsfile contains the full logic for this)
+CHANGED_FILES=$(git diff --name-only origin/main...HEAD)
+
+# Get only the applications affected by the changed files
+java -jar kustomtrace.jar -a ./kubernetes -o app-list.yaml affected-apps $CHANGED_FILES
+```
+
+### 2. High-Performance Parallel Policy Application
+
+Next, we use the `kyverno-parallel-apply` library to run `kyverno apply` on the generated manifests. The library call is simple and configurable.
+
+```groovy
+// Import the library at the top of your Jenkinsfile:
+// @Library('kyverno-parallel-apply@v1.0.0') _
+// In a later Jenkinsfile stage, after building the manifests
+stage('Apply Kyverno Policies') {
+    steps {
+        script {
+            kyvernoParallelApply([
+                'manifestSourceDirectory': builtAppsFolder,
+                'policyPath': policiesFile,
+                'finalReportPath': kyvernoResults,
+                'generatedResourcesDir': 'generated-artifacts',
+                'debugLogDir': 'debug-logs',
+                'extraKyvernoArgs': '--cluster --audit-warn'
+            ])
+        }
+    }
+}
+```
+
+### The Results
+
+The impact on performance is significant.
+
+* **Single-Threaded Kyverno Apply Time:** **8 minutes, 22 seconds**
+* **Parallelized Kyverno Apply Time (4 executors):** **3 minutes, 46 seconds**
+    * (This includes a fixed overhead of ~30 seconds for setup and result merging)
+
+![image](https://github.com/user-attachments/assets/89c6a640-decd-4091-9feb-204c51b74d9d)
+
+This represents a **55% reduction** in the policy enforcement bottleneck. The pipeline also automatically archives the final merged policy report, any generated/mutated resources, and the debug logs from each parallel shard as build artifacts.
+
+![image](https://github.com/user-attachments/assets/9205644d-cea6-4816-9da8-0385d65c104f)
+
+
+This approach provides a robust, efficient, and maintainable solution for managing CI/CD on large-scale Kustomize repositories.
