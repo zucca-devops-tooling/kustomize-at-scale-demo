@@ -100,8 +100,7 @@ The impact on performance is significant.
 
 This represents a **55% reduction** in the policy enforcement bottleneck. The pipeline also automatically archives the final merged policy report, any generated/mutated resources, and the debug logs from each parallel shard as build artifacts.
 
-![image](https://github.com/user-attachments/assets/9c55fac8-2629-4452-be85-3d5dbe891d1a)
-![image](https://github.com/user-attachments/assets/1d03cd51-f5b2-4fc9-bf8b-f6ff7ab46eba)
+![image](https://github.com/user-attachments/assets/9205644d-cea6-4816-9da8-0385d65c104f)
 
 
 This approach provides a robust, efficient, and maintainable solution for managing CI/CD on large-scale Kustomize repositories.
