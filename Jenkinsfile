@@ -16,9 +16,19 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
+        stage('Checkout Code') {
             steps {
-                checkout scm
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: "*/${env.BRANCH_NAME}"]],
+                    extensions: [
+                        [$class: 'PruneStaleBranch'],
+                        [$class: 'UserDefinedInstantiator',
+                            instance: [$class: 'RefSpec', value: '+refs/heads/*:refs/remotes/origin/*']
+                        ]
+                    ],
+                    userRemoteConfigs: [[url: 'https://github.com/zucca-devops-tooling/kustomize-at-scale-demo.git']]
+                ])
             }
         }
         stage('Download kustom-trace-cli') {
@@ -28,32 +38,6 @@ pipeline {
                 }
             }
         }
-        stage('PAUSE FOR MANUAL DEBUGGING') {
-        steps {
-            script {
-                // Get the absolute path of the current workspace
-                def workspacePath = pwd()
-    
-                echo "--------------------------------------------------------"
-                echo "PIPELINE PAUSED - READY FOR MANUAL DEBUGGING"
-                echo "--------------------------------------------------------"
-                echo "The workspace will NOT be cleaned until you click 'Proceed'."
-                echo ""
-                echo "1. SSH into the Jenkins agent now."
-                echo "2. Navigate to the workspace directory:"
-                echo "   cd ${workspacePath}"
-                echo "3. Run your git commands to debug the remotes:"
-                echo "   git remote -v"
-                echo "   git status"
-                echo "--------------------------------------------------------"
-    
-                // This is the crucial step. It pauses the build indefinitely.
-                // The pipeline will not continue to the 'post' block and will not
-                // clean the workspace until you interact with it in the Jenkins UI.
-                input message: 'Pipeline paused for debugging. Click "Proceed" when you are finished.'
-            }
-        }
-    }
         stage('Get Apps to Build') {
             steps {
                 script {
