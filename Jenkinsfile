@@ -39,6 +39,7 @@ pipeline {
                         def targetBranch = env.CHANGE_TARGET ?: 'main'
 
                         echo "Comparing against target branch: ${targetBranch}"
+                        sh "git fetch origin ${targetBranch}"
 
                         // This command compares the current branch with the target branch
                         // and saves only the names of the changed files to our text file.
