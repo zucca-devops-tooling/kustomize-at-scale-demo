@@ -35,22 +35,20 @@ pipeline {
                         echo "Pull Request detected. Calculating affected applications..."
 
                         // Define the name for the file that will hold the list of changed files.
-                        def changedFilesList = 'changed-files-in-pr.txt'
                         def targetBranch = env.CHANGE_TARGET ?: 'main'
 
                         echo "Comparing against target branch: ${targetBranch}"
-                        sh "git fetch origin ${targetBranch}"
+                        def diffOutput = sh(script: "git diff --name-status origin/${targetBranch}...HEAD", returnStdout: true).trim()
 
-                        // This command compares the current branch with the target branch
-                        // and saves only the names of the changed files to our text file.
-                        sh "git diff --name-only origin/${targetBranch}... > ${changedFilesList}"
+                        def changedFiles = diffOutput.readLines().collect { line ->
+                            // Split the line by the tab character and take the second element (the path).
+                            return line.split('\t')[1]
+                        }
 
-                        echo "Found the following changed files:"
-                        sh "cat ${changedFilesList}"
+                        def changedFilesArg = changedFiles.join(' ')
+                        echo "Found the following changed files: ${changedFilesArg}"
 
-                        // This command uses the list of changed files to find only the root
-                        // applications that were actually impacted by the PR's changes.
-                        sh "java -jar ${cliFile} -a ./kubernetes -o ${appListFile} affected-apps -f ${changedFilesList}"
+                        sh "java -jar ${cliFile} -a ./kubernetes -o ${appListFile} affected-apps ${changedFilesArg}"
 
                         echo "Affected apps list generated for PR."
                     } else {
