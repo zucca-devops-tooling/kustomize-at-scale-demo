@@ -104,6 +104,4 @@ This represents a **55% reduction** in the policy enforcement bottleneck. The pi
 ![image](https://github.com/user-attachments/assets/1d03cd51-f5b2-4fc9-bf8b-f6ff7ab46eba)
 
 
-*(You could add a screenshot here of the Jenkins "Pipeline Steps" view showing the parallel stages running simultaneously)*
-
 This approach provides a robust, efficient, and maintainable solution for managing CI/CD on large-scale Kustomize repositories.
