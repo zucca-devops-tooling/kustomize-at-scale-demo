@@ -53,7 +53,7 @@ pipeline {
 
                         sh "java -jar ${cliFile} -a ./kubernetes -o ${appListFile} affected-apps ${changedFilesArg}"
 
-                        def affectedAppsMap = readYaml(file: appListFile)
+                        def affectedAppsMap = readYaml(file: appListFile).'affected-apps'
                         def allAffectedApps = affectedAppsMap.values().flatten()
                         def uniqueAffectedApps = allAffectedApps.unique()
                         echo "Found ${uniqueAffectedApps.size()} unique affected applications."
