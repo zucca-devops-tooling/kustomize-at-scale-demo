@@ -53,7 +53,7 @@ pipeline {
 
                         sh "java -jar ${cliFile} -a ./kubernetes -o ${appListFile} affected-apps ${changedFilesArg}"
 
-                        echo "Affected apps list generated for PR."
+                        sh "cat ${appListFile}"
                     } else {
                         echo "Main branch build detected. Getting all root applications..."
 
