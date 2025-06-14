@@ -53,6 +53,14 @@ pipeline {
 
                         sh "java -jar ${cliFile} -a ./kubernetes -o ${appListFile} affected-apps ${changedFilesArg}"
 
+                        def affectedAppsMap = readYaml(file: appListFile)
+                        def allAffectedApps = affectedAppsMap.values().flatten()
+                        def uniqueAffectedApps = allAffectedApps.unique()
+                        echo "Found ${uniqueAffectedApps.size()} unique affected applications."
+    
+                        def finalAppList = [ 'root-apps': uniqueAffectedApps ]
+                        writeYaml(file: appListFile, data: finalAppList, overwrite: true)
+                        
                         sh "cat ${appListFile}"
                     } else {
                         echo "Main branch build detected. Getting all root applications..."
