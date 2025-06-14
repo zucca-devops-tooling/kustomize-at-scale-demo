@@ -28,32 +28,6 @@ pipeline {
                 }
             }
         }
-        stage('PAUSE FOR MANUAL DEBUGGING') {
-        steps {
-            script {
-                // Get the absolute path of the current workspace
-                def workspacePath = pwd()
-    
-                echo "--------------------------------------------------------"
-                echo "PIPELINE PAUSED - READY FOR MANUAL DEBUGGING"
-                echo "--------------------------------------------------------"
-                echo "The workspace will NOT be cleaned until you click 'Proceed'."
-                echo ""
-                echo "1. SSH into the Jenkins agent now."
-                echo "2. Navigate to the workspace directory:"
-                echo "   cd ${workspacePath}"
-                echo "3. Run your git commands to debug the remotes:"
-                echo "   git remote -v"
-                echo "   git status"
-                echo "--------------------------------------------------------"
-    
-                // This is the crucial step. It pauses the build indefinitely.
-                // The pipeline will not continue to the 'post' block and will not
-                // clean the workspace until you interact with it in the Jenkins UI.
-                input message: 'Pipeline paused for debugging. Click "Proceed" when you are finished.'
-            }
-        }
-    }
         stage('Get Apps to Build') {
             steps {
                 script {
@@ -63,8 +37,11 @@ pipeline {
                         // Define the name for the file that will hold the list of changed files.
                         def targetBranch = env.CHANGE_TARGET ?: 'main'
 
+                        // Fetch
+                        sh "git fetch origin ${targetBranch}"
+
                         echo "Comparing against target branch: ${targetBranch}"
-                        def diffOutput = sh(script: "git diff --name-status origin/${targetBranch}...HEAD", returnStdout: true).trim()
+                        def diffOutput = sh(script: "git diff --name-status FETCH_HEAD...HEAD", returnStdout: true).trim()
 
                         def changedFiles = diffOutput.readLines().collect { line ->
                             // Split the line by the tab character and take the second element (the path).
