@@ -27,5 +27,4 @@ rules:
   - pods
   - pods/log
   verbs:
-  - post
   - get     # supports viewing pod logs from UI
