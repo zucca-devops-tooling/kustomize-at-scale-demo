@@ -70,7 +70,7 @@ Next, we use the `kyverno-parallel-apply` library to run `kyverno apply` on the 
 
 ```groovy
 // Import the library at the top of your Jenkinsfile:
-// @Library('kyverno-parallel-apply') _
+// @Library('kyverno-parallel-apply@v1.0.0') _
 // In a later Jenkinsfile stage, after building the manifests
 stage('Apply Kyverno Policies') {
     steps {
