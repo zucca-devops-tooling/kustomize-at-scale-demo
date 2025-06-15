@@ -31,44 +31,11 @@ pipeline {
         stage('Get Apps to Build') {
             steps {
                 script {
-                    if (env.CHANGE_ID) {
-                        echo "Pull Request detected. Calculating affected applications..."
+                    echo "Main branch build detected. Getting all root applications..."
 
-                        // Define the name for the file that will hold the list of changed files.
-                        def targetBranch = env.CHANGE_TARGET ?: 'main'
+                    sh "java -jar ${cliFile} -a ./kubernetes -o ${appListFile} list-root-apps"
 
-                        // Fetch
-                        sh "git fetch origin ${targetBranch}"
-
-                        echo "Comparing against target branch: ${targetBranch}"
-                        def diffOutput = sh(script: "git diff --name-status FETCH_HEAD...HEAD", returnStdout: true).trim()
-
-                        def changedFiles = diffOutput.readLines().collect { line ->
-                            // Split the line by the tab character and take the second element (the path).
-                            return line.split('\t')[1]
-                        }
-
-                        def changedFilesArg = changedFiles.join(' ')
-                        echo "Found the following changed files: ${changedFilesArg}"
-
-                        sh "java -jar ${cliFile} -a ./kubernetes -o ${appListFile} affected-apps ${changedFilesArg}"
-
-                        def affectedAppsMap = readYaml(file: appListFile).'affected-apps'
-                        def allAffectedApps = affectedAppsMap.values().flatten()
-                        def uniqueAffectedApps = allAffectedApps.unique()
-                        echo "Found ${uniqueAffectedApps.size()} unique affected applications."
-    
-                        def finalAppList = [ 'root-apps': uniqueAffectedApps ]
-                        writeYaml(file: appListFile, data: finalAppList, overwrite: true)
-                        
-                        sh "cat ${appListFile}"
-                    } else {
-                        echo "Main branch build detected. Getting all root applications..."
-
-                        sh "java -jar ${cliFile} -a ./kubernetes -o ${appListFile} list-root-apps"
-
-                        echo "Full application list generated."
-                    }
+                    echo "Full application list generated."
                 }
             }
         }
