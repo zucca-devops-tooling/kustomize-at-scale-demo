@@ -1,4 +1,4 @@
-@Library('kyverno-parallel-apply') _
+@Library('kyverno-parallel-apply@chore/documentation') _
 
 def cliVersion = "1.0.1"
 def cliFile = "kustomtrace-cli-${cliVersion}-all.jar"
@@ -136,9 +136,6 @@ pipeline {
             }
         }
         stage('Parallel Apply') {
-            when {
-                branch 'main'
-            }
             steps {
                 script {
                     try {
@@ -148,7 +145,8 @@ pipeline {
                             'finalReportPath': kyvernoResults,
                             'policyPath': policiesFile,
                             'extraKyvernoArgs': '--audit-warn',
-                            'debugLogDir': 'logs'
+                            'debugLogDir': 'logs',
+                            'parallelStageCount': 1
                         ])
                     } catch (err) {
                         println("Apply failed")
